@@ -1,0 +1,114 @@
+@import 'basic';
+
+.container-login{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.login-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    max-width: 300px;
+    padding: 20px;
+    margin: auto;
+    @media(min-width: 768px){
+        border: 0.5px solid @blue;
+        border-radius: 25px;
+    }
+    .logo{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        img{
+            width: 50%;
+        }
+        h1{
+            font-family: @font-sans-bold;
+            font-size: 50px;
+            color: @blue;
+            margin: 0;
+            padding: 0;
+            margin-top: -30px;
+        }
+    }
+
+    form{
+        width: 80%;
+        margin: 20px; 
+        input{
+            width:100%;
+            padding: 5px;
+            text-align: center;
+            font-family: @font-sans;
+            height:40px;
+            border: 1px solid @blue-light2;
+            background: white;
+            transition:0.2s ease-in-out;
+            &:hover{
+                background-color: @skyblue-light2;
+            }
+            &:focus{
+                background: @skyblue-light3;
+            }
+            &[type="text"]{
+                border-radius: 10px 10px 0 0;
+            }
+        }
+        .password{
+            display: flex;
+            align-items: center;
+            input{
+                width: 80%;
+                border-top: 0;
+                border-right: 0;
+                border-radius: 0 0 0 10px;
+            }
+            span{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 20%;
+                border: 1px solid @blue-light2;
+                color: @blue-light3;
+                text-decoration: none;
+                border-top: 0;
+                border-left: 0;
+                height: 40px;
+                border-radius: 0 0 10px 0;
+                &:hover{
+                    color: @blue-light2;
+                }
+                &:active{
+                    color: @blue-light3;
+                }
+            }
+        }
+    }
+    .btn-login{
+        border-radius: 10px;
+        padding: 5px 30px;
+        font-weight: 800;
+        margin-bottom: 20px;
+        color: @blue;
+        border: 3px solid @blue;
+        background-color: @skyblue-light3;
+        &:hover{
+            background-color: @blue-dark1;
+            color: @skyblue-light3;
+        }
+        &:active{
+            background-color: @blue-light1 !important;
+        }
+        &.disabled{
+            background-color: @blue-dark1;
+            color: @skyblue-light3;
+        }
+    }
+}

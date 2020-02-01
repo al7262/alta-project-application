@@ -16,5 +16,16 @@ export const actions = (store) => ({
             toggler.innerHTML='menu'
             headerLocation.style.visibility='visible'
         }
+    },
+    handleVisibilityPassword: () => {
+        const password = document.getElementById('password')
+        const visibilityPassword = document.getElementById('visibilityPassword')
+        if(visibilityPassword.innerHTML==='visibility'){
+            password.type='text';
+            visibilityPassword.innerHTML='visibility_off';
+        } else{
+            password.type='password';
+            visibilityPassword.innerHTML='visibility';
+        }
     }
 });
