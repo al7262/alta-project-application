@@ -16,3 +16,11 @@ nav {
 .bg-blue {
   background-color: #003354;
 }
+#header-location {
+  font-family: 'Passion One', sans-serif;
+  font-size: 32px;
+  color: #e9f2f6;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 56px;
+}

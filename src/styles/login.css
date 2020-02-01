@@ -1,0 +1,112 @@
+/* Color Theme Swatches in Hex */
+.container-login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
+  max-width: 300px;
+  padding: 20px;
+  margin: auto;
+}
+@media (min-width: 768px) {
+  .login-box {
+    border: 0.5px solid #003354;
+    border-radius: 25px;
+  }
+}
+.login-box .logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-box .logo img {
+  width: 50%;
+}
+.login-box .logo h1 {
+  font-family: 'Passion One', sans-serif;
+  font-size: 50px;
+  color: #003354;
+  margin: 0;
+  padding: 0;
+  margin-top: -30px;
+}
+.login-box form {
+  width: 80%;
+  margin: 20px;
+}
+.login-box form input {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #8099aa;
+  background: white;
+  transition: 0.2s ease-in-out;
+}
+.login-box form input:hover {
+  background-color: #c8dfea;
+}
+.login-box form input:focus {
+  background: #e9f2f6;
+}
+.login-box form input[type="text"] {
+  border-radius: 10px 10px 0 0;
+}
+.login-box form .password {
+  display: flex;
+  align-items: center;
+}
+.login-box form .password input {
+  width: 80%;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0 0 0 10px;
+}
+.login-box form .password span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20%;
+  border: 1px solid #8099aa;
+  color: #b3c2cc;
+  text-decoration: none;
+  border-top: 0;
+  border-left: 0;
+  height: 40px;
+  border-radius: 0 0 10px 0;
+}
+.login-box form .password span:hover {
+  color: #8099aa;
+}
+.login-box form .password span:active {
+  color: #b3c2cc;
+}
+.login-box .btn-login {
+  border-radius: 10px;
+  padding: 5px 30px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #003354;
+  border: 3px solid #003354;
+  background-color: #e9f2f6;
+}
+.login-box .btn-login:hover {
+  background-color: #002943;
+  color: #e9f2f6;
+}
+.login-box .btn-login:active {
+  background-color: #335c76 !important;
+}
+.login-box .btn-login.disabled {
+  background-color: #002943;
+  color: #e9f2f6;
+}
