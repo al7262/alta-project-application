@@ -1,0 +1,18 @@
+/* Color Theme Swatches in Hex */
+nav {
+  font-family: 'Muli', sans-serif;
+}
+.navbar-toggler {
+  border: 0 !important;
+}
+.navbar-brand {
+  padding: 0;
+  margin: 0 50px !important;
+}
+.navbar-brand span {
+  font-family: 'Passion One', sans-serif;
+  font-size: 32px;
+}
+.bg-blue {
+  background-color: #003354;
+}
