@@ -9,7 +9,8 @@ class HomePage extends React.Component {
     render(){
         return (
             <React.Fragment>
-                <Header/>
+                <Header
+                pageLocation='Beranda'/>
             </React.Fragment>
         )
     }
