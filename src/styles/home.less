@@ -1,0 +1,109 @@
+@import 'basic';
+
+.container-home{
+    height: 100vh;
+    .background{
+        height: 100%;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .background-mask{
+            height: 100vh;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            background-color: @blue-dark2;
+            opacity: 0.5;
+        }
+    }
+
+    .content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90vw;
+        max-width: 692px;
+        display: flex;
+        flex-direction: column;
+        h1{
+            font-family: @font-sans-bold;
+            color: @skyblue-light3;
+        }
+        h6{
+            font-family: @font-sans;
+            color: @skyblue-light3;
+            font-weight: 800;
+        }
+
+        .outlet-choice{
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+            @media(max-height: 512px){
+                margin-top: 10px;
+            }
+            span{
+                font-family: @font-sans;
+                color: @skyblue-light3;
+                font-weight: 500;
+                font-size: 12px;
+            }
+            select{
+                background-color: transparent;
+                border: 0;
+                font-family: @font-sans;
+                color: @blue-light3;
+                text-decoration: underline;
+                font-weight: 500;
+                font-size: 12px;
+            }
+        }
+        .button-group{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .btn-choice{
+                width: 50%;
+                max-width: 200px;
+                margin:5px;
+                background-color: @blue;
+                border: 0;
+                &:hover{
+                    background-color: @blue-dark1;
+                }
+                &:active{
+                    background-color: @blue-light1;
+                }
+                &.disabled{
+                    background-color: @blue-light1;
+                    color: @skyblue-dark1;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .logo{
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: flex;
+        align-items: center;
+        @media(max-height: 512px){
+            bottom: 2.5%;
+        }
+        img{
+            max-width: 60px;
+        }
+        span{
+            font-family: @font-sans-bold;
+            color: @skyblue-light3;
+            font-size: 40px;
+        }
+    }
+}

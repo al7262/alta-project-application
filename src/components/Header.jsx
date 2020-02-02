@@ -8,7 +8,7 @@ import logo from '../images/logo-light.svg';
 const Header = (props) => {
     return(
         <React.Fragment>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-blue justify-content-end">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-blue justify-content-end fixed-top">
                 <Link className="navbar-brand d-lg-flex d-none" to="/">
                     <img src={logo} alt="application-logo" style={{height:'50px'}}/>
                     <span>EasyKachin'</span>
