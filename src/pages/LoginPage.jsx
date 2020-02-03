@@ -24,7 +24,7 @@ class LoginPage extends React.Component {
                                 </span>
                             </div>
                         </form>
-                        <Link className="btn btn-login">Login</Link>
+                        <Link className="btn btn-login">Masuk</Link>
                     </div>
                 </div>
             </React.Fragment>
