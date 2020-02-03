@@ -1,0 +1,153 @@
+@import 'basic';
+
+.col-lg-6{
+    @media(max-width:768px){
+        padding:0 !important;
+    }
+}
+
+.item-box{
+    .item-inside{
+        height: 120px;
+        text-decoration: none;
+        border-bottom: 1px solid @blue;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: @blue;
+        padding: 10px;
+        .img-box{
+            max-width: 100px;
+            height: 100px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+        }
+        .content-box{
+            height: 100%;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            label{
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-family: @font-sans;
+                font-weight: 800;
+                font-size: 18px;
+                margin: 0;
+                padding: 0;
+            }
+            span{
+                font-family: @font-sans;
+                font-size: 14px;
+                padding-left: 10px;
+            }
+        }
+        .button-box{
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            margin-top: 10px;
+            .btn-add{
+                padding: 0;
+                height: 25px;
+                width: 60px;
+                border-radius: 5px;
+                align-items: center;
+                display: flex;
+                background-color: @blue;
+                border: 0;
+                color: white;
+                a{
+                    width: 100%;
+                    height: 100%;
+                    text-decoration: none;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    border-radius: 5px;
+                    &:hover{
+                        background-color: @blue-dark1;
+                    }
+                    &:active{
+                        background-color: @blue-light1;
+                    }
+                    &#add{
+                        border-radius: 5px 0 0 5px;
+                    }
+                    &#remove{
+                        border-radius: 0 5px 5px 0;
+                    }
+                    i{
+                        color: white;
+                        font-size: 16px;
+                    }
+                    span{
+                        font-weight: 800;
+                        padding: 0;
+                    }
+                }
+                #qty{
+                    font-weight: 800;
+                    text-align: center;
+                    padding: 0 !important;
+                }
+            }
+        }
+    }
+    @media(min-width: 769px){
+        padding: 5px;
+        margin-bottom: 20px;
+        .item-inside{
+            padding:0;
+            background-color: @blue;
+            flex-direction: column;
+            justify-content: start;
+            height: 250px;
+            border-radius: 25px;
+            border: 0.5px solid @blue;
+            .img-box{
+            justify-content: flex-end;
+            width: 100%;
+                max-width: 100%;
+                height: 60%;
+                img{
+                    border-radius: 25px 25px 0 0;
+                }
+            }
+            .content-box{
+                width: 100%;
+                padding: 10px;
+                color: @skyblue-light3;
+                display: flex;
+                flex-direction: column;
+            }
+            .button-box{
+                margin: 0;
+                padding-right: 5px;
+                .btn-add{
+                    background-color: @skyblue-light3;
+                    color: @blue;
+                    a{
+                        color: @blue;
+                        &:hover{
+                            background-color: @skyblue-light1;
+                        }
+                        &:active{
+                            background-color: @skyblue-light2;
+                        }
+                        i{
+                            color:@blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
