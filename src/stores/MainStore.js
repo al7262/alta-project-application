@@ -1,11 +1,21 @@
 import createStore from 'unistore';
 
 const initialState = {
+    search: ''
 };
 
 export const store = createStore(initialState);
 
 export const actions = (store) => ({
+    handleOnChange: (state,event) => {
+        store.setState({[event.target.name]: event.target.value})
+    },
+    handleInput: (state, key, value) => {
+        store.setState({[key]: value})
+    },
+    handleManyInput: (state, dict) => {
+        store.setState({dict})
+    },
     handleTogglerNavbar: () => {
         const toggler = document.getElementById('navbarToggler')
         const headerLocation = document.getElementById('header-location')
@@ -27,5 +37,5 @@ export const actions = (store) => ({
             password.type='password';
             visibilityPassword.innerHTML='visibility';
         }
-    }
+    },
 });
