@@ -40,8 +40,10 @@
   font-family: 'Muli', sans-serif;
   font-weight: 700;
 }
-.back-box .back-inside .next {
-  font-size: 40px;
+@media (max-width: 512px) {
+  .back-box .back-inside span {
+    font-size: 16px;
+  }
 }
 @media (min-width: 769px) {
   .back-box {
