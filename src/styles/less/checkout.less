@@ -1,0 +1,36 @@
+@import 'basic.less';
+
+.background{
+    min-height: 100vh;
+    background-color: @blue;
+    @media(min-width: 769px){
+        background: url('../images/background2.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+}
+
+.limited{
+    padding-top: 64px;
+    @media(min-width: 769px){
+        padding-top: 76px;
+        max-width: 692px !important;
+    }
+}
+
+.section-box{
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    margin-top: 15px;
+    hr{
+        width: 100%;
+        margin-top: 0;
+        border-bottom: 1px solid @blue;
+    }
+    h5{
+        font-family: @font-sans;
+        font-weight: 800;
+    }
+}

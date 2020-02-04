@@ -29,6 +29,13 @@ class OrderPage extends React.Component {
                         <div className="col-lg-8">
                             <div className="row">
                                 {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
+                                {dataToShow}
                                 {category!==undefined?
                                 <div className="col-xl-4 col-lg-6 back-box">
                                     <Link className="back-inside" to='/order'>
@@ -42,6 +49,19 @@ class OrderPage extends React.Component {
                         </div>
                         <div className="col-lg-2"></div>
                     </div>
+                    <div className="row col-12 gap-150" id="gap"></div>
+                </div>
+                <div className="cart-box fixed-bottom">
+                    <Link className="checkout" to="/checkout">
+                        <i className="material-icons">shopping_basket</i>
+                        <div className="details">
+                            <span>Total barang: 10</span>
+                            <h5>Rp100.000,00</h5>
+                        </div>
+                    </Link>
+                    <Link className="clear-cart">
+                        <i className="material-icons">block</i>
+                    </Link>
                 </div>
             </React.Fragment>
         )
