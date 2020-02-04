@@ -74,7 +74,7 @@
   border-radius: 5px;
   align-items: center;
   display: flex;
-  background-color: #003354;
+  background-color: #ffae1a;
   border: 0;
   color: white;
 }
@@ -89,10 +89,10 @@
   border-radius: 5px;
 }
 .item-box .item-inside .button-box .btn-add a:hover {
-  background-color: #002943;
+  background-color: #e69d17;
 }
 .item-box .item-inside .button-box .btn-add a:active {
-  background-color: #335c76;
+  background-color: #ffbe48;
 }
 .item-box .item-inside .button-box .btn-add a#add {
   border-radius: 5px 0 0 5px;
@@ -148,17 +148,10 @@
     padding-right: 5px;
   }
   .item-box .item-inside .button-box .btn-add {
-    background-color: #e9f2f6;
     color: #003354;
   }
   .item-box .item-inside .button-box .btn-add a {
     color: #003354;
-  }
-  .item-box .item-inside .button-box .btn-add a:hover {
-    background-color: #a7cbdd;
-  }
-  .item-box .item-inside .button-box .btn-add a:active {
-    background-color: #c8dfea;
   }
   .item-box .item-inside .button-box .btn-add a i {
     color: #003354;

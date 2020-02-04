@@ -1,4 +1,4 @@
-@import 'basic';
+@import 'basic.less';
 
 .col-lg-6{
     @media(max-width:768px){
@@ -60,7 +60,7 @@
                 border-radius: 5px;
                 align-items: center;
                 display: flex;
-                background-color: @blue;
+                background-color: @orange;
                 border: 0;
                 color: white;
                 a{
@@ -73,10 +73,10 @@
                     color: white;
                     border-radius: 5px;
                     &:hover{
-                        background-color: @blue-dark1;
+                        background-color: @orange-dark1;
                     }
                     &:active{
-                        background-color: @blue-light1;
+                        background-color: @orange-light1;
                     }
                     &#add{
                         border-radius: 5px 0 0 5px;
@@ -132,16 +132,9 @@
                 margin: 0;
                 padding-right: 5px;
                 .btn-add{
-                    background-color: @skyblue-light3;
                     color: @blue;
                     a{
                         color: @blue;
-                        &:hover{
-                            background-color: @skyblue-light1;
-                        }
-                        &:active{
-                            background-color: @skyblue-light2;
-                        }
                         i{
                             color:@blue;
                         }
