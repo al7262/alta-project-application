@@ -1,4 +1,19 @@
 /* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
 .container-login {
   height: 100vh;
   display: flex;
