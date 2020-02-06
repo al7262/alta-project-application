@@ -30,7 +30,6 @@ export const actions = (store) => ({
     handleManyInput: (state, dict) => {
         store.setState({dict})
     },
-
     handleTogglerNavbar: () => {
         const toggler = document.getElementById('navbarToggler')
         const headerLocation = document.getElementById('header-location')

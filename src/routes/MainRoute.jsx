@@ -8,6 +8,9 @@ import { store } from '../stores/MainStore';
 import HomePage from '../pages/HomePage';
 import LoginPage from '../pages/LoginPage';
 import NotMatchPage from '../pages/NotMatchPage';
+import OrderPage from '../pages/OrderPage';
+import CheckoutPage from '../pages/CheckoutPage';
+import ReceiptFormat from '../components/ReceiptFormat';
 
 
 const Mainroute = () => {
@@ -17,6 +20,10 @@ const Mainroute = () => {
                 <Switch>
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/login" component={LoginPage}/>
+                    <Route exact path="/checkout" component={CheckoutPage}/>
+                    <Route exact path="/receipt" component={ReceiptFormat}/>
+                    <Route exact path="/order" component={OrderPage}/>
+                    <Route exact path="/order/:category" component={OrderPage}/>
                     <Route component={NotMatchPage}/>
                 </Switch>
             </BrowserRouter>

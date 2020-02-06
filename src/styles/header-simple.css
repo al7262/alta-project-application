@@ -1,0 +1,60 @@
+/* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
+.container-header {
+  width: 100%;
+  background-color: #003354;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+}
+.container-header .inside-header {
+  width: 100%;
+  max-width: 692px;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: #e9f2f6;
+}
+.container-header .inside-header span {
+  font-family: 'Passion One', sans-serif;
+  font-size: 32px;
+  margin: 0 auto;
+  padding-right: 56px;
+}
+.container-header .inside-header i {
+  font-size: 32px;
+}
+.container-header .inside-header a {
+  padding: 0.25rem 0.75rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.container-header .inside-header a:hover {
+  color: #c8dfea;
+}
+.container-header .inside-header a:active {
+  color: #e9f2f6;
+}
+@media (min-width: 769px) {
+  .container-header {
+    height: 76px;
+  }
+}
