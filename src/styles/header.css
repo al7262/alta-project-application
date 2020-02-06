@@ -1,0 +1,41 @@
+/* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
+nav {
+  font-family: 'Muli', sans-serif;
+}
+.navbar-toggler {
+  border: 0 !important;
+}
+.navbar-brand {
+  padding: 0;
+  margin: 0 50px !important;
+}
+.navbar-brand span {
+  font-family: 'Passion One', sans-serif;
+  font-size: 32px;
+}
+.bg-blue {
+  background-color: #003354;
+}
+#header-location {
+  font-family: 'Passion One', sans-serif;
+  font-size: 32px;
+  color: #e9f2f6;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 56px;
+}
