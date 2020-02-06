@@ -14,12 +14,12 @@
 .gap-200 {
   height: 200px;
 }
-.background {
+.bg-checkout {
   min-height: 100vh;
   background-color: #003354;
 }
 @media (min-width: 769px) {
-  .background {
+  .bg-checkout {
     background: url('../images/background2.jpg');
     background-size: cover;
     background-attachment: fixed;
@@ -28,6 +28,9 @@
 }
 .limited {
   padding-top: 64px;
+  padding-bottom: 15px;
+  height: calc(100vh - 75px);
+  overflow: auto;
 }
 @media (min-width: 769px) {
   .limited {
@@ -153,7 +156,6 @@
 .payment-form .payment-choice input[type="number"] {
   width: 50%;
   padding: 5px;
-  text-align: center;
   font-family: 'Muli', sans-serif;
   height: 40px;
   border: 1px solid #ffd78d;
@@ -166,4 +168,60 @@
 }
 .payment-form .payment-choice input[type="number"]:focus {
   background: #ffefd1;
+}
+.checkout-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+}
+.checkout-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  text-decoration: none;
+  color: white;
+}
+.checkout-button a span {
+  font-family: 'Muli', sans-serif;
+  font-weight: 800;
+}
+.checkout-button a.btn-back {
+  background-color: #003354;
+  border-color: #002943;
+}
+.checkout-button a.btn-back:hover {
+  background-color: #002943;
+  color: white;
+}
+.checkout-button a.btn-back:active {
+  background-color: #335c76;
+  color: white;
+}
+.checkout-button a.btn-checkout {
+  background-color: #F26101;
+  border-color: #da5701;
+}
+.checkout-button a.btn-checkout:hover {
+  background-color: #da5701;
+  color: white;
+}
+.checkout-button a.btn-checkout:active {
+  background-color: #f3711a;
+  color: white;
+}
+.checkout-button a.btn-checkout i {
+  transform: rotate(180deg);
+}
+.order-summary {
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.order-summary .row {
+  width: 95%;
+  max-width: calc(75% + 100px);
 }

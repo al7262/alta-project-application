@@ -52,13 +52,43 @@ class CheckoutPage extends React.Component {
                 icon="delete"
                 title="Checkout"
                 handleOnClick={this.props.handleOnClick}/>
-                <div className="container-fluid background">
+                <div className="container-fluid bg-checkout">
                     <div className="container limited">
                         <div className="row section-box">
                             <h5>
                                 Rangkuman Pesanan
                             </h5>
                             <hr/>
+                            <div className="container-fluid order-summary">
+                                <div className="row">
+                                    <div className="col-6 item-name">item 1</div>
+                                    <div className="col-2 item-qty">x1</div>
+                                    <div className="col-4 price">15.000</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-6 item-name">item 1</div>
+                                    <div className="col-2 item-qty">x1</div>
+                                    <div className="col-4 price">15.000</div>
+                                </div>
+                                <div className="row">
+                                    <hr/>
+                                </div>
+                                <div className="row">
+                                    <div className="col-8 item-name">Total Harga Barang</div>
+                                    <div className="col-4 price">30.000</div>
+                                </div>
+                                <div className="row">
+                                    <div className="col-8 item-name">Pajak Toko(10%)</div>
+                                    <div className="col-4 price">+3.000</div>
+                                </div>
+                                <div className="row">
+                                    <hr/>
+                                </div>
+                                <div className="row">
+                                    <div className="col-8 item-name">Total Keseluruhan</div>
+                                    <div className="col-4 price">33.000</div>
+                                </div>
+                            </div>
                         </div>
                         <div className="row section-box">
                             <h5>
@@ -82,7 +112,7 @@ class CheckoutPage extends React.Component {
                                 Detail Pelanggan
                             </h5>
                             <hr/>
-                            <form className="customer-form" onSubmit={e=>e.preventDefault()}>
+                            <form className="customer-form" autoComplete="off" onSubmit={e=>e.preventDefault()}>
                                 <input list="customer" name="customer" onChange={e=>this.handleOnChange(e)}/>
                                 <datalist id="customer">
                                     {this.state.CustomerList.map(item=>(
@@ -114,6 +144,16 @@ class CheckoutPage extends React.Component {
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div className="checkout-button">
+                        <Link className="btn btn-back" to="/order">
+                            <i className="material-icons">arrow_back_ios</i>
+                            <span>Kembali</span>
+                        </Link>
+                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''?'disabled':'')}>
+                            <span>Selesai</span>
+                            <i className="material-icons">arrow_back_ios</i>
+                        </Link>
                     </div>
                 </div>
             </React.Fragment>

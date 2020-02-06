@@ -1,6 +1,6 @@
 @import 'basic.less';
 
-.background{
+.bg-checkout{
     min-height: 100vh;
     background-color: @blue;
     @media(min-width: 769px){
@@ -13,6 +13,9 @@
 
 .limited{
     padding-top: 64px;
+    padding-bottom: 15px;
+    height: ~"calc(100vh - 75px)";
+    overflow: auto;
     @media(min-width: 769px){
         padding-top: 76px;
         max-width: 692px !important;
@@ -140,7 +143,6 @@
         input[type="number"]{
             width:50%;
             padding: 5px;
-            text-align: center;
             font-family: @font-sans;
             height:40px;
             border: 1px solid @orange-light2;
@@ -154,5 +156,63 @@
                 background: @orange-light3;
             }
         }
+    }
+}
+
+.checkout-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        text-decoration: none;
+        color: white;
+        span{
+            font-family: @font-sans;
+            font-weight: 800;
+        }
+        &.btn-back{
+            background-color: @blue;
+            border-color: @blue-dark1;
+            &:hover{
+                background-color: @blue-dark1;
+                color: white;
+            }
+            &:active {
+                background-color: @blue-light1;
+                color: white;
+            }
+        }
+        &.btn-checkout{
+            background-color: @sunset;
+            border-color: @sunset-dark1;
+            &:hover{
+                background-color: @sunset-dark1;
+                color: white;
+            }
+            &:active {
+                background-color: @sunset-light1;
+                color: white;
+            }
+            i{
+                transform: rotate(180deg);
+            }
+        }
+    }
+}
+
+.order-summary{
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .row{
+        width: 95%;
+        max-width: ~"calc(75% + 100px)";
     }
 }
