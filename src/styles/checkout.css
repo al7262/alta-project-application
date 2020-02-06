@@ -225,3 +225,9 @@
   width: 95%;
   max-width: calc(75% + 100px);
 }
+.order-summary .row .item-qty {
+  text-align: center;
+}
+.order-summary .row .price {
+  text-align: right;
+}
