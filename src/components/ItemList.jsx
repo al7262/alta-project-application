@@ -9,7 +9,7 @@ const ItemList = (props) => {
     return(
         <React.Fragment>
                 <div className="col-xl-4 col-lg-6 item-box">
-                    <Link className="item-inside">
+                    <div className="item-inside">
                         <div className="img-box">
                             <img src={image} alt="product-item"/>
                         </div>
@@ -37,7 +37,7 @@ const ItemList = (props) => {
                                 }
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </div>
         </React.Fragment>
     )

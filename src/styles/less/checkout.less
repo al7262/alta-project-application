@@ -24,6 +24,8 @@
     padding: 20px;
     border-radius: 15px;
     margin-top: 15px;
+    display: flex;
+    flex-direction: column;
     hr{
         width: 100%;
         margin-top: 0;
@@ -32,5 +34,125 @@
     h5{
         font-family: @font-sans;
         font-weight: 800;
+        color: @blue;
+    }
+}
+
+.promo-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    label.wrap {
+        width: 95%;
+        max-width: ~"calc(75% + 100px)";
+        overflow: hidden;
+        position: relative;
+        display: block;
+        height:40px;
+        border-radius: 10px;
+    }
+
+    select{
+        width:100%;
+        padding: 5px;
+        text-align: center;
+        font-family: @font-sans;
+        height:40px;
+        border: 1px solid @orange-light2;
+        background: white;
+        transition:0.2s ease-in-out;
+        border-radius: 10px;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        &:hover{
+            background-color: @orange-light2;
+            &+span i{
+                color: @sunset-dark1
+            }
+        }
+        &:focus{
+            background: @orange-light3;
+            &+span i{
+                color: @sunset-light2;
+            }
+        }
+    }
+    span i{
+        position: absolute;
+        top: 50%;
+        right: 10px;
+        transform: translate(0, -50%);
+        color: @sunset;
+        transition:0.2s ease-in-out;
+    }
+}
+
+.customer-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input{
+        width:75%;
+        padding: 5px;
+        text-align: center;
+        font-family: @font-sans;
+        height:40px;
+        border: 1px solid @orange-light2;
+        background: white;
+        transition:0.2s ease-in-out;
+        border-radius: 10px 0 0 10px;
+        &:hover{
+            background-color: @orange-light2;
+        }
+        &:focus{
+            background: @orange-light3;
+        }
+    }
+    .btn-add-customer{
+        width: 20%;
+        background-color: @sunset;
+        color: white;
+        font-family: @font-sans;
+        font-weight: 700!important;
+        height: 40px;
+        border-radius: 0 10px 10px 0;
+        max-width: 80px;
+        &:hover{
+            background-color: @sunset-dark1;
+        }
+        &:active{
+            background-color: @sunset-light1;
+        }
+    }
+}
+
+.payment-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .payment-choice{
+        width: 95%;
+        max-width: ~"calc(75% + 100px)";
+        display: flex;
+        flex-direction: column;
+        input[type="number"]{
+            width:50%;
+            padding: 5px;
+            text-align: center;
+            font-family: @font-sans;
+            height:40px;
+            border: 1px solid @orange-light2;
+            background: white;
+            transition:0.2s ease-in-out;
+            border-radius: 10px;
+            &:hover{
+                background-color: @orange-light2;
+            }
+            &:focus{
+                background: @orange-light3;
+            }
+        }
     }
 }

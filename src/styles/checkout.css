@@ -40,6 +40,8 @@
   padding: 20px;
   border-radius: 15px;
   margin-top: 15px;
+  display: flex;
+  flex-direction: column;
 }
 .section-box hr {
   width: 100%;
@@ -49,4 +51,119 @@
 .section-box h5 {
   font-family: 'Muli', sans-serif;
   font-weight: 800;
+  color: #003354;
+}
+.promo-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.promo-form label.wrap {
+  width: 95%;
+  max-width: calc(75% + 100px);
+  overflow: hidden;
+  position: relative;
+  display: block;
+  height: 40px;
+  border-radius: 10px;
+}
+.promo-form select {
+  width: 100%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #ffd78d;
+  background: white;
+  transition: 0.2s ease-in-out;
+  border-radius: 10px;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+.promo-form select:hover {
+  background-color: #ffd78d;
+}
+.promo-form select:hover + span i {
+  color: #da5701;
+}
+.promo-form select:focus {
+  background: #ffefd1;
+}
+.promo-form select:focus + span i {
+  color: #f9b080;
+}
+.promo-form span i {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(0, -50%);
+  color: #F26101;
+  transition: 0.2s ease-in-out;
+}
+.customer-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.customer-form input {
+  width: 75%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #ffd78d;
+  background: white;
+  transition: 0.2s ease-in-out;
+  border-radius: 10px 0 0 10px;
+}
+.customer-form input:hover {
+  background-color: #ffd78d;
+}
+.customer-form input:focus {
+  background: #ffefd1;
+}
+.customer-form .btn-add-customer {
+  width: 20%;
+  background-color: #F26101;
+  color: white;
+  font-family: 'Muli', sans-serif;
+  font-weight: 700!important;
+  height: 40px;
+  border-radius: 0 10px 10px 0;
+  max-width: 80px;
+}
+.customer-form .btn-add-customer:hover {
+  background-color: #da5701;
+}
+.customer-form .btn-add-customer:active {
+  background-color: #f3711a;
+}
+.payment-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.payment-form .payment-choice {
+  width: 95%;
+  max-width: calc(75% + 100px);
+  display: flex;
+  flex-direction: column;
+}
+.payment-form .payment-choice input[type="number"] {
+  width: 50%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #ffd78d;
+  background: white;
+  transition: 0.2s ease-in-out;
+  border-radius: 10px;
+}
+.payment-form .payment-choice input[type="number"]:hover {
+  background-color: #ffd78d;
+}
+.payment-form .payment-choice input[type="number"]:focus {
+  background: #ffefd1;
 }
