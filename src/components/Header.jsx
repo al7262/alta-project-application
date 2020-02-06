@@ -24,16 +24,16 @@ const Header = (props) => {
                             <Link className="nav-link" to="/">Beranda</Link>
                         </li>
                         <li className={"nav-item " + (props.pageLocation==='Pesanan'? 'active' : '')}>
-                            <Link className="nav-link" to="/order">Pesanan</Link>
+                            <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'/':'/order'}>Pesanan</Link>
                         </li>
                         <li className={"nav-item " + (props.pageLocation==='Aktivitas'? 'active' : '')}>
-                            <Link className="nav-link" to="/">Aktivitas</Link>
+                            <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'/':'/order'}>Aktivitas</Link>
                         </li>
                         <li className={"nav-item " + (props.pageLocation==='Pelanggan'? 'active' : '')}>
-                            <Link className="nav-link" to="/">Pelanggan</Link>
+                            <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'/':'/order'}>Pelanggan</Link>
                         </li>
                         <li className={"nav-item " + (props.pageLocation==='Inventaris'? 'active' : '')}>
-                            <Link className="nav-link" to="/">Inventaris</Link>
+                            <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'/':'/order'}>Inventaris</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/">Logout</Link>
@@ -45,4 +45,4 @@ const Header = (props) => {
     )
 }
 
-export default connect('', actions)(withRouter(Header));
+export default connect('outlet', actions)(withRouter(Header));

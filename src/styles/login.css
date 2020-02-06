@@ -57,6 +57,14 @@
   width: 80%;
   margin: 20px;
 }
+.login-box form label#warning {
+  width: 100%;
+  text-align: center;
+  color: #da5701;
+  margin: 0;
+  font-family: 'Muli', sans-serif;
+  font-size: 12px;
+}
 .login-box form input {
   width: 100%;
   padding: 5px;
@@ -79,25 +87,21 @@
 .login-box form .password {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .login-box form .password input {
-  width: 80%;
+  width: 100%;
   border-top: 0;
-  border-right: 0;
-  border-radius: 0 0 0 10px;
+  border-radius: 0 0 10px 10px;
 }
 .login-box form .password span {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 20%;
-  border: 1px solid #8099aa;
   color: #b3c2cc;
   text-decoration: none;
-  border-top: 0;
-  border-left: 0;
-  height: 40px;
-  border-radius: 0 0 10px 0;
+  position: absolute;
+  right: 10px;
 }
 .login-box form .password span:hover {
   color: #8099aa;
