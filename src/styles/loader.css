@@ -1,0 +1,60 @@
+.container-loader{
+    height: 100%;
+    min-height: max-content;
+    width: 100%;
+    min-width: max-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader{
+    width: 51px;
+    height: 35px;
+}
+.container-loader p{
+    font-size: 15px;
+    font-family: 'Passion One';
+    color: #003354;
+}
+.loader .loader-inner{
+    display: inline-block;
+    width: 15px;
+    border-radius: 15px;
+    margin: 1px;
+    background: #F26101;
+}
+.loader .loader-inner:nth-last-child(1){
+    -webkit-animation: loading 1.5s 1s infinite;
+    animation: loading 1.5s 1s infinite;
+}
+.loader .loader-inner:nth-last-child(2){
+    -webkit-animation: loading 1.5s .5s infinite;
+    animation: loading 1.5s .5s infinite;
+}
+.loader .loader-inner:nth-last-child(3){
+    -webkit-animation: loading 1.5s 0s infinite;
+    animation: loading 1.5s 0s infinite;
+}
+@-webkit-keyframes loading{
+    0%{
+        height: 15px;
+    }
+    50%{
+        height: 35px;
+    }
+    100%{
+        height: 15px;
+    }
+}
+@keyframes loading{
+    0%{
+        height: 15px;
+    }
+    50%{
+        height: 35px;
+    }
+    100%{
+        height: 15px;
+    }
+}

@@ -1,0 +1,124 @@
+/* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
+.container-home {
+  height: 100vh;
+}
+.container-home .background {
+  height: 100%;
+}
+.container-home .background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.container-home .background .background-mask {
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  background-color: #001f32;
+  opacity: 0.5;
+}
+.container-home .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  max-width: 692px;
+  display: flex;
+  flex-direction: column;
+}
+.container-home .content h1 {
+  font-family: 'Passion One', sans-serif;
+  color: #e9f2f6;
+}
+.container-home .content h6 {
+  font-family: 'Muli', sans-serif;
+  color: #e9f2f6;
+  font-weight: 800;
+}
+.container-home .content .outlet-choice {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+@media (max-height: 512px) {
+  .container-home .content .outlet-choice {
+    margin-top: 10px;
+  }
+}
+.container-home .content .outlet-choice span {
+  font-family: 'Muli', sans-serif;
+  color: #e9f2f6;
+  font-weight: 500;
+  font-size: 12px;
+}
+.container-home .content .outlet-choice select {
+  background-color: transparent;
+  border: 0;
+  font-family: 'Muli', sans-serif;
+  color: #f9b080;
+  text-decoration: underline;
+  font-weight: 500;
+  font-size: 12px;
+}
+.container-home .content .button-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.container-home .content .button-group .btn-choice {
+  width: 50%;
+  max-width: 200px;
+  margin: 5px;
+  background-color: #003354;
+  border: 0;
+}
+.container-home .content .button-group .btn-choice:hover {
+  background-color: #002943;
+}
+.container-home .content .button-group .btn-choice:active {
+  background-color: #335c76;
+}
+.container-home .content .button-group .btn-choice.disabled {
+  background-color: #335c76;
+  color: #7498aa;
+  opacity: 1;
+}
+.container-home .logo {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+}
+@media (max-height: 512px) {
+  .container-home .logo {
+    bottom: 2.5%;
+  }
+}
+.container-home .logo img {
+  max-width: 60px;
+}
+.container-home .logo span {
+  font-family: 'Passion One', sans-serif;
+  color: #e9f2f6;
+  font-size: 40px;
+}

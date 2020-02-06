@@ -1,0 +1,145 @@
+@import 'basic.less';
+
+.receipt-container{
+    background-color: white;
+    width: 350px;
+    padding: 20px;
+    border: 0.5px solid @skyblue-light3;
+    color: @blue;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-family: @font-sans;
+    hr{
+        width: 100%;
+        border-bottom: 1px solid @blue !important;
+    }
+    .receipt-logo{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img{
+            width: 20%;
+        }
+    }
+    .receipt-address{   
+        width: 100%;
+        p{
+            text-align: center;
+            font-size: 14px;
+            margin: 0;
+        }
+    }
+    .receipt-order{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .row{
+            width: 95%;
+            h6{
+                margin:0;
+                padding: 0;
+                font-size: 14px;
+            }
+            .key{
+                width: 30%;
+                font-weight: 800;
+            }
+            .separator{
+                width: 5%;
+                text-align: center;
+            }
+            .value{
+                width: 65%;
+            }
+        }
+    }
+    .receipt-item{
+        padding: 0 !important;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        h6{
+            padding: 0;
+            margin: 0;
+        }
+        .row{
+            width: 95%;
+            .item-name{
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                h6{
+                    font-weight: 800;
+                }
+                span{
+                    font-size: 12px;
+                    padding-left: 10px;
+                }
+            }
+            .item-qty{
+                width: 10%;
+                text-align: center;
+            }
+            .item-price{
+                width: 30%;
+                text-align: right;
+            }
+
+        }
+    }
+    .receipt-calculation{
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        hr{
+            border-bottom: 2px solid @blue !important;
+            margin: 0.5rem;
+        }
+        .row{
+            width: 95%;
+            h6{
+                margin: 0;
+                padding: 0;
+                font-size: 14px;
+            }
+            .key{
+                width: 60%;
+                font-weight: 800;
+            }
+            .value{
+                width: 40%;
+                text-align: right;
+            }
+        }
+    }
+    .app-logo{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0.1;
+        img{
+            width: 150px;
+        }
+        h1{
+            margin: 0;
+            padding: 0;
+            margin-top: -30px;
+            font-family: @font-sans-bold;
+        }
+    }
+}
