@@ -19,6 +19,9 @@
     padding: 0 !important;
   }
 }
+.container-loader {
+  height: 80vh;
+}
 .back-box .back-inside {
   text-decoration: none;
   padding: 10px;

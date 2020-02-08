@@ -51,16 +51,16 @@
   font-family: 'Muli', sans-serif;
   color: #e9f2f6;
   font-weight: 800;
+  margin-bottom: 50px;
+}
+@media (max-height: 512px) {
+  .container-home .content h6 {
+    margin-bottom: 10px;
+  }
 }
 .container-home .content .outlet-choice {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
-}
-@media (max-height: 512px) {
-  .container-home .content .outlet-choice {
-    margin-top: 10px;
-  }
 }
 .container-home .content .outlet-choice span {
   font-family: 'Muli', sans-serif;

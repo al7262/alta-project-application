@@ -10,7 +10,6 @@ class CheckoutPage extends React.Component {
     state={
         itemList: undefined,
         promoList: undefined,
-        CustomerList: ['Fadhil', 'Akira', 'Pipit', 'Ulfa', 'Lian'],
         payment: undefined,
         customer: undefined,
         promo: undefined,
@@ -21,11 +20,11 @@ class CheckoutPage extends React.Component {
         const name=event.target.name;
         let value = event.target.value;
         if(name==='customer'){
-            if(Array.isArray(this.state.CustomerList)){
+            if(Array.isArray(this.props.CustomerList)){
                 const addButton = document.getElementById('addCustomer')
                 let isMatch=false;
                 const valRegex = new RegExp(value.toLowerCase())
-                isMatch = await this.state.CustomerList.some(element => {
+                isMatch = await this.props.CustomerList.some(element => {
                     if(element.toLowerCase().match(valRegex)){
                         return true
                     }
@@ -45,13 +44,18 @@ class CheckoutPage extends React.Component {
         console.log(value)
     }
 
+    handleHeaderButton = () => {
+        this.props.emptyCart()
+        this.props.history.push('/')
+    }
+
     render(){
         return (
             <React.Fragment>
                 <HeaderSimple
                 icon="delete"
                 title="Checkout"
-                handleOnClick={this.props.handleOnClick}/>
+                handleOnClick={this.handleHeaderButton}/>
                 <div className="container-fluid bg-checkout">
                     <div className="container limited">
                         <div className="row section-box">
@@ -115,9 +119,11 @@ class CheckoutPage extends React.Component {
                             <form className="customer-form" autoComplete="off" onSubmit={e=>e.preventDefault()}>
                                 <input list="customer" name="customer" onChange={e=>this.handleOnChange(e)}/>
                                 <datalist id="customer">
-                                    {this.state.CustomerList.map(item=>(
+                                    {Array.isArray(this.props.CustomerList)?
+                                    this.props.CustomerList.map(item=>(
                                         <option value={item}>{item}</option>
-                                        ))}
+                                    ))
+                                    :null}
                                 </datalist>
                                 <button className="btn btn-add-customer disabled" id="addCustomer">+add</button>
                             </form>
@@ -160,4 +166,4 @@ class CheckoutPage extends React.Component {
         )
     }
 }
-export default connect('', actions)(withRouter(CheckoutPage));
+export default connect('customerList', actions)(withRouter(CheckoutPage));

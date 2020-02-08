@@ -8,6 +8,7 @@ const initialState = {
     error: undefined,
     isOwner: false,
     isLogin: false,
+    // baseUrl: 'http://0.0.0.0:5000/',
     baseUrl: 'https://api.easy.my.id/',
     claims: undefined,
     outletList: undefined,
@@ -86,12 +87,12 @@ export const actions = (store) => ({
         .then(async (response) => {
             if(response.data!==''||response.data!==undefined){
                 if (response.data.hasOwnProperty('claims')) {
+                    await store.setState({ claims: response.data.claims });
                     if (response.data.claims.email) {
                         await store.setState({ isOwner: true });
                     }
                     await store.setState({ isLogin: true });
-                    console.log('check check', state.isLogin, state.isOwner)
-                    await store.setState({ claims: response.data.claims });
+                    console.log(store.getState().claims)
                 } else {
                     await store.setState({ isLogin: false });
                 }
@@ -105,22 +106,21 @@ export const actions = (store) => ({
     /**
      * Handling logout when user click log out butten
      */
-    handleLogout: async () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('cart')
-        await store.setState({ isLogin: false });
-        await store.setState({ isAdmin: false });
+    handleLogout: async (state) => {
+        await localStorage.removeItem('token');
+        await localStorage.removeItem('cart');
+        await store.setState(initialState);
         swal.fire({
-        title: 'Good bye!',
-        text: 'You have successfully logged out!',
-        icon: 'success',
-        timer: 2000,
-        confirmButtonText: 'understood',
+            title: 'Good bye!',
+            text: 'You have successfully logged out!',
+            icon: 'success',
+            timer: 2000,
+            confirmButtonText: 'understood',
         });
     },
 
     /**
-     * Handle reset data in global state everytime page will unmount
+     * Handle reset data and error in global state everytime page will unmount
      */
     handleReset: async () => {
         await store.setState({data:undefined, error:undefined})
@@ -136,11 +136,37 @@ export const actions = (store) => ({
         headers: {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
-        url: state.baseUrl+'category/list',
+        url: state.baseUrl+'product/category',
         };
         await axios(input)
         .then(async (response) => {
-            await store.setState({ categoryList: response.data.result });
+            await store.setState({ categoryList: response.data });
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    },
+    
+    /**
+     * get list item based on category from database
+     * response was saved in store.data
+     */
+    getItem: async (state, category) => {
+        const input = {
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            url: state.baseUrl+'product',
+            params: {
+                category: category,
+                id_outlet: store.getState().outlet
+            }
+        };
+        await axios(input)
+        .then(async (response) => {
+            await store.setState({ itemList: response.data });
+            console.log(response)
         })
         .catch((error) => {
             console.warn(error);
@@ -191,8 +217,9 @@ export const actions = (store) => ({
             method: 'get',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
+                'Access-Control-Allow-Origin': '*',
             },
-            url: state.baseUrl+'employee',
+            url: state.baseUrl+'employee/get/'+store.getState().claims.id,
         };
         await axios(input)
         .then(async (response) => {
@@ -216,5 +243,40 @@ export const actions = (store) => ({
           });
           await store.setState({error: undefined})
         }
+    },
+
+    addToCart: async (state, input) => {
+        const cart = localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart'));
+        const dict = {
+            data: input,
+            qty: 1,
+        };
+        cart.push(dict);
+        localStorage.setItem('cart', JSON.stringify(cart));
+    },
+    
+    emptyCart: (state) =>{
+        console.log('here i am emptying this fucking thing')
+        localStorage.removeItem('cart')
+    },
+      
+    updateCart: (state, id, qty)=>{
+        const cart = JSON.parse(localStorage.getItem('cart'));
+        let newCart;
+        console.log(cart)
+        if(Array.isArray(cart)){
+            cart.forEach(item => {
+                if(item.data.id===id){
+                    item.qty += qty
+                    if(item.qty>item.data.stock){
+                        item.qty=item.data.stock
+                    }
+                }
+            });
+            newCart = cart.filter((item)=>{
+                return item.qty>0
+            })
+        }
+        localStorage.setItem('cart', JSON.stringify(newCart))
     },
 });
