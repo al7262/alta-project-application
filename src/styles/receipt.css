@@ -16,8 +16,10 @@
 }
 .receipt-container {
   background-color: white;
-  width: 350px;
-  padding: 20px;
+  margin: 10px auto;
+  width: 330px;
+  height: auto;
+  padding: 20px 10px;
   border: 0.5px solid #e9f2f6;
   color: #003354;
   position: relative;
@@ -155,4 +157,8 @@
   padding: 0;
   margin-top: -30px;
   font-family: 'Passion One', sans-serif;
+}
+.receipt-limited {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
 }

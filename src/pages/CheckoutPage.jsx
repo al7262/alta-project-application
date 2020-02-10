@@ -22,7 +22,6 @@ class CheckoutPage extends React.Component {
         taxAmount: 0,
         totalEverything: 0,
         finishChecking: false,
-        order:undefined,
     }
 
     componentWillMount = async() =>{
@@ -155,8 +154,8 @@ class CheckoutPage extends React.Component {
                         confirmButtonText: 'Roger',
                         confirmButtonColor: '#F26101',
                         })
-                        localStorage.removeItem('cart')
-                        this.props.history.push('/')
+                        this.props.emptyCart()
+                        this.props.history.push('/receipt')
                     }
                 })
             } 

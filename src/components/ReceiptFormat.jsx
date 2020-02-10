@@ -5,7 +5,7 @@ import logo from '../images/logo-dark.svg';
 const ReceiptFormat = (props) => {
     return (
         <React.Fragment>
-            <div className="receipt-container" id="receipt">
+            <div className="receipt-container shadow" id="receipt">
                 <div className="receipt-logo">
                     <img src={logo} alt="logo-business"/>
                     <h1>CoffeeShop</h1>

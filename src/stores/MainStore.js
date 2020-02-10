@@ -18,6 +18,7 @@ const initialState = {
     itemList: undefined,
     outlet: undefined,
     cashierName: undefined,
+    orderDetails: undefined,
 };
 
 export const store = createStore(initialState);
