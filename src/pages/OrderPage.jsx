@@ -42,8 +42,8 @@ class OrderPage extends React.Component {
         const cart = JSON.parse(localStorage.getItem('cart'))
         if(Array.isArray(cart)){
             cart.forEach(item=>{
-                totalItem+=item.qty
-                totalPrice+=(item.data.price*item.qty)
+                totalItem+=item.unit
+                totalPrice+=(item.price*item.unit)
             })
         }
         this.state.totalPrice=totalPrice
@@ -60,8 +60,8 @@ class OrderPage extends React.Component {
                     let qty;
                     if(Array.isArray(cart)){
                         cart.forEach(cartItem=>{
-                            if(cartItem.data.id===item.id){
-                                qty=cartItem.qty
+                            if(cartItem.id===item.id){
+                                qty=cartItem.unit
                             }
                         })
                     }

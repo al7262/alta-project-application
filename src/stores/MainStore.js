@@ -292,16 +292,14 @@ export const actions = (store) => ({
 
     addToCart: async (state, input) => {
         const cart = localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart'));
-        const dict = {
-            data: input,
-            qty: 1,
-        };
+        const dict = input;
+        dict['unit'] = 1
         cart.push(dict);
+        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart));
     },
     
     emptyCart: (state) =>{
-        console.log('here i am emptying this fucking thing')
         localStorage.removeItem('cart')
     },
       
@@ -311,15 +309,15 @@ export const actions = (store) => ({
         console.log(cart)
         if(Array.isArray(cart)){
             cart.forEach(item => {
-                if(item.data.id===id){
-                    item.qty += qty
-                    if(item.qty>item.data.stock){
-                        item.qty=item.data.stock
+                if(item.id===id){
+                    item.unit += qty
+                    if(item.unit>item.stock){
+                        item.unit=item.stock
                     }
                 }
             });
             newCart = cart.filter((item)=>{
-                return item.qty>0
+                return item.unit>0
             })
         }
         localStorage.setItem('cart', JSON.stringify(newCart))

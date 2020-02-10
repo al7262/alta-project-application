@@ -78,7 +78,7 @@ class CheckoutPage extends React.Component {
         }
         if(Array.isArray(this.state.itemList)){
             this.state.itemList.forEach(item => {
-                totalPrice += item.data.price*item.qty
+                totalPrice += item.price*item.unit
             });
         }
         const taxAmount = totalPrice*tax/100
@@ -109,7 +109,7 @@ class CheckoutPage extends React.Component {
 
     handleCheckout = () =>{
         const order = this.state.itemList.map(item=>{
-            return '<div class="row"><div class="col-6 item-name">'+item.data.name+'</div><div class="col-2 item-qty">x'+item.qty+'</div><div class="col-4 price">'+formatMoney(item.data.price*item.qty, "Rp", 2, '.', ',')+'</div></div>'
+            return '<div class="row"><div class="col-6 item-name">'+item.name+'</div><div class="col-2 item-qty">x'+item.unit+'</div><div class="col-4 price">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div>'
         })
         swal.fire({
             title: 'Confirmed?',
@@ -192,9 +192,9 @@ class CheckoutPage extends React.Component {
                                 {Array.isArray(this.state.itemList)?
                                 this.state.itemList.map(item=>(
                                     <div className="row">
-                                        <div className="col-6 item-name">{item.data.name}</div>
-                                        <div className="col-2 item-qty">x{item.qty}</div>
-                                        <div className="col-4 price">{formatMoney(item.data.price*item.qty, "", 0, '.')}</div>
+                                        <div className="col-6 item-name">{item.name}</div>
+                                        <div className="col-2 item-qty">x{item.unit}</div>
+                                        <div className="col-4 price">{formatMoney(item.price*item.unit, "", 0, '.')}</div>
                                     </div>
                                 )):null}
                                 <div className="row">
