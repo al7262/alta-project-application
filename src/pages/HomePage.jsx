@@ -15,6 +15,7 @@ class HomePage extends React.Component {
         finishGetInfo: false,
         isLoading: true,
     }
+
     componentDidMount = async() =>{
         await this.props.checkLoginStatus();
         await this.props.handleInput('outlet', undefined)
@@ -24,7 +25,7 @@ class HomePage extends React.Component {
             this.setState({finishGetInfo:true})
             await this.props.getOutlet()
             this.setState({isLoading:false})
-        } else{
+        } else if(this.props.isLogin){
             console.log(this.props.claims)
             await this.props.getEmployeeInformation()
             this.setState({finishGetInfo:true})

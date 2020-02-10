@@ -12,7 +12,9 @@ const initialState = {
     baseUrl: 'https://api.easy.my.id/',
     claims: undefined,
     outletList: undefined,
+    outletDetails: undefined,
     categoryList: undefined,
+    customerList: undefined,
     itemList: undefined,
     outlet: undefined,
     cashierName: undefined,
@@ -194,6 +196,49 @@ export const actions = (store) => ({
         });
     },
 
+    /**
+     * get list outlet from database
+     * response was saved in store.data
+     */
+    getOutletDetails: async (state) => {
+        console.log(state.outlet)
+        const input = {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        url: state.baseUrl+'outlet/get/'+state.outlet,
+        };
+        await axios(input)
+        .then(async (response) => {
+            await store.setState({ outletDetails: response.data });
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    },
+
+    /**
+     * get list customer from database
+     * response was saved in store.data
+     */
+    getCustomer: async (state) => {
+        const input = {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        url: state.baseUrl+'customer',
+        };
+        await axios(input)
+        .then(async (response) => {
+            await store.setState({ customerList: response.data.list_all_customer });
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    },
+
     getOwnerInformation: async(state) => {
         const input = {
             method: 'get',
@@ -219,7 +264,7 @@ export const actions = (store) => ({
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
                 'Access-Control-Allow-Origin': '*',
             },
-            url: state.baseUrl+'employee/get/'+store.getState().claims.id,
+            url: state.baseUrl+'employee/search',
         };
         await axios(input)
         .then(async (response) => {

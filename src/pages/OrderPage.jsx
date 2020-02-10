@@ -13,10 +13,14 @@ import Loader from '../components/Loader';
 class OrderPage extends React.Component {
     state = {
         isLoading: true,
+        finishChecking: false,
+        totalItem: 0,
+        totalPrice: 0
     }
 
     componentWillMount = async () =>{
         await this.props.checkLoginStatus();
+        this.setState({finishChecking:true})
     }
 
     componentDidMount = async () =>{
@@ -33,9 +37,21 @@ class OrderPage extends React.Component {
         this.setState({isLoading:false})
     }
 
+    updateCartData = async() => {
+        let totalItem=0, totalPrice=0;
+        const cart = JSON.parse(localStorage.getItem('cart'))
+        if(Array.isArray(cart)){
+            cart.forEach(item=>{
+                totalItem+=item.qty
+                totalPrice+=(item.data.price*item.qty)
+            })
+        }
+        this.state.totalPrice=totalPrice
+        this.state.totalItem=totalItem
+    }
+
     render(){
         let dataToShow;
-        let totalItem=0, totalPrice=0;
         const category = this.props.match.params.category
         if(category!==undefined){
             if(this.props.itemList!==undefined){
@@ -46,8 +62,6 @@ class OrderPage extends React.Component {
                         cart.forEach(cartItem=>{
                             if(cartItem.data.id===item.id){
                                 qty=cartItem.qty
-                                totalItem+=qty
-                                totalPrice+=(cartItem.data.price*qty)
                             }
                         })
                     }
@@ -58,8 +72,7 @@ class OrderPage extends React.Component {
                     price={item.price}
                     stock={item.stock}
                     image={item.image}
-                    qty={qty}
-                    handleOnClick={this.handleOnClickCategory}/>
+                    qty={qty}/>
                 })
             }
         } else if(this.props.categoryList!==undefined){
@@ -69,8 +82,14 @@ class OrderPage extends React.Component {
                 handleOnClick={this.handleOnClickCategory}/>
             })
         }
+        this.updateCartData()
         if(this.props.outlet===undefined){
             return <Redirect to="/"></Redirect>
+        }
+        if(!this.state.finishChecking){
+            return <Loader
+                height='100vh'
+                scale='3'/>
         }
         if(!this.props.isLogin){
             return <Redirect to='/login'/>
@@ -81,7 +100,7 @@ class OrderPage extends React.Component {
                 pageLocation='Pesanan'/>
                 <SearchBarAbove/>
                 {this.state.isLoading?
-                <div className="container-loader">
+                <div className="order-container-loader">
                     <Loader scale='1.5'/>
                 </div>
                 :
@@ -107,13 +126,13 @@ class OrderPage extends React.Component {
                     <div className="row col-12 gap-150" id="gap"></div>
                 </div>
                 }
-                {totalItem===0?null:
+                {!Array.isArray(JSON.parse(localStorage.getItem('cart')))?null:
                 <div className="cart-box fixed-bottom">
                     <Link className="checkout" to="/checkout">
                         <i className="material-icons">shopping_basket</i>
                         <div className="details">
-                            <span>Total barang: {totalItem}</span>
-                            <h5>{formatMoney(totalPrice, "Rp", 2, ".", ",")}</h5>
+                            <span>Total barang: {this.state.totalItem}</span>
+                            <h5>{formatMoney(this.state.totalPrice, "Rp", 2, ".", ",")}</h5>
                         </div>
                     </Link>
                     <Link className="clear-cart" onClick={()=>this.props.emptyCart()}>
