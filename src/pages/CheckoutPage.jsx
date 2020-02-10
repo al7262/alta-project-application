@@ -101,7 +101,9 @@ class CheckoutPage extends React.Component {
         };
         await this.props.handleApi(input)
         const data = await this.props.data
-        await this.setState({order:data.result})
+        if(data!==undefined){
+            await this.setState({order:data.result})
+        }
         this.props.handleReset()
     }
 
