@@ -20,6 +20,7 @@ class CheckoutPage extends React.Component {
         finishGetCustomer: false,
         totalItemPrice: 0,
         taxAmount: 0,
+        tax: 0,
         totalEverything: 0,
         finishChecking: false,
     }
@@ -29,8 +30,25 @@ class CheckoutPage extends React.Component {
         this.setState({finishChecking:true})
     }
 
+    handleResetState = async () => {
+        this.setState({
+            itemList: undefined,
+            promoList: undefined,
+            payment: undefined,
+            customer: undefined,
+            promo: undefined,
+            amountPaid: undefined,
+            finishGetCustomer: false,
+            totalItemPrice: 0,
+            taxAmount: 0,
+            tax: 0,
+            totalEverything: 0,
+            finishChecking: false,
+        })
+    }
+
     componentDidMount = async () => {
-        this.setState({itemList:JSON.parse(localStorage.getItem('cart'))})
+        this.setState({itemList: JSON.parse(localStorage.getItem('cart'))})
         this.props.getCustomer();
         this.setState({finishGetCustomer: true})
         await this.props.getOutletDetails()
@@ -81,7 +99,7 @@ class CheckoutPage extends React.Component {
             });
         }
         const taxAmount = totalPrice*tax/100
-        await this.setState({totalItemPrice: totalPrice, taxAmount: taxAmount, totalEverything: (totalPrice+taxAmount)})
+        await this.setState({totalItemPrice: totalPrice, taxAmount: taxAmount, totalEverything: (totalPrice+taxAmount), tax:tax})
         this.state.amountPaid=this.state.totalEverything
     }
 
@@ -108,7 +126,7 @@ class CheckoutPage extends React.Component {
 
     handleCheckout = () =>{
         const order = this.state.itemList.map(item=>{
-            return '<div class="row"><div class="col-6 item-name">'+item.name+'</div><div class="col-2 item-qty">x'+item.unit+'</div><div class="col-4 price">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div>'
+            return '<div class="container-fluid"><div class="row"><div class="col-6 text-left">'+item.name+'</div><div class="col-2">x'+item.unit+'</div><div class="col-4 text-right">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div></div>'
         })
         swal.fire({
             title: 'Confirmed?',
@@ -155,6 +173,7 @@ class CheckoutPage extends React.Component {
                         confirmButtonColor: '#F26101',
                         })
                         this.props.emptyCart()
+                        this.handleResetState()
                         this.props.history.push('/receipt')
                     }
                 })
@@ -204,7 +223,7 @@ class CheckoutPage extends React.Component {
                                     <div className="col-4 price">{formatMoney(this.state.totalItemPrice, "", 0,".")}</div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-8 item-name">Pajak Toko(10%)</div>
+                                    <div className="col-8 item-name">Pajak Toko({this.state.tax}%)</div>
                                     <div className="col-4 price">+{formatMoney(this.state.taxAmount, "", 0,".")}</div>
                                 </div>
                                 <div className="row">

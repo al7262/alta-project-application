@@ -38,6 +38,8 @@ const ReceiptFormat = (props) => {
                 </div>
                 <hr />
                 <div className="receipt-item">
+                    {!Array.isArray(props.itemList)? null:
+                    props.itemList.map(item=>(
                     <div className="row">
                         <div className="item-name">
                             <h6>item1</h6>
@@ -46,6 +48,8 @@ const ReceiptFormat = (props) => {
                         <h6 className="item-qty">1</h6>
                         <h6 className="item-price">15.000</h6>
                     </div>
+                    ))
+                    }
                 </div>
                 <hr/>
                 <div className="receipt-calculation">

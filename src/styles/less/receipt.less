@@ -149,4 +149,82 @@
 .receipt-limited{
     padding-right: 0 !important;
     padding-left: 0 !important;
+    @media(max-width: 384px){
+        height: ~"calc(100vh - 160px)";
+    }
+}
+
+.receipt-button{
+    height: 75px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media(max-width: 384px){
+        flex-direction: column;
+        height: 160px;
+    }
+    a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px;
+        text-decoration: none;
+        color: white;
+        @media(max-width: 384px){
+            margin: 5px;
+            width: 150px;
+        }
+        span{
+            font-family: @font-sans;
+            font-weight: 800;
+        }
+        i{
+            margin-right: 10px;
+        }
+        &.btn-email{
+            background-color: @blue;
+            border-color: @blue-dark1;
+            @media(max-width: 768px){
+                background-color: @skyblue;
+                border-color: @skyblue-dark1;
+                color: @blue-dark1;
+            }
+            &:hover{
+                background-color: @blue-dark1;
+                color: white;
+            }
+            &:active {
+                background-color: @blue-light1;
+                color: white;
+                @media(max-width: 768px){
+                    background-color: @skyblue-dark1;
+                }
+            }
+        }
+        &.btn-whatsapp{
+            background-color: #22c35e;
+            border-color: #1b9849;
+            &:hover{
+                background-color: #1b9849;
+                color: white;
+            }
+            &:active {
+                background-color: #25D366;
+                color: white;
+            }
+        }
+        &.btn-print{
+            background-color: @sunset;
+            border-color: @sunset-dark1;
+            &:hover{
+                background-color: @sunset-dark1;
+                color: white;
+            }
+            &:active {
+                background-color: @sunset-light1;
+                color: white;
+            }
+        }
+    }
 }

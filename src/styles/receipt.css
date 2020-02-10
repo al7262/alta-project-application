@@ -162,3 +162,90 @@
   padding-right: 0 !important;
   padding-left: 0 !important;
 }
+@media (max-width: 384px) {
+  .receipt-limited {
+    height: calc(100vh - 160px);
+  }
+}
+.receipt-button {
+  height: 75px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 384px) {
+  .receipt-button {
+    flex-direction: column;
+    height: 160px;
+  }
+}
+.receipt-button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  text-decoration: none;
+  color: white;
+}
+@media (max-width: 384px) {
+  .receipt-button a {
+    margin: 5px;
+    width: 150px;
+  }
+}
+.receipt-button a span {
+  font-family: 'Muli', sans-serif;
+  font-weight: 800;
+}
+.receipt-button a i {
+  margin-right: 10px;
+}
+.receipt-button a.btn-email {
+  background-color: #003354;
+  border-color: #002943;
+}
+@media (max-width: 768px) {
+  .receipt-button a.btn-email {
+    background-color: #91BED4;
+    border-color: #7498aa;
+    color: #002943;
+  }
+}
+.receipt-button a.btn-email:hover {
+  background-color: #002943;
+  color: white;
+}
+.receipt-button a.btn-email:active {
+  background-color: #335c76;
+  color: white;
+}
+@media (max-width: 768px) {
+  .receipt-button a.btn-email:active {
+    background-color: #7498aa;
+  }
+}
+.receipt-button a.btn-whatsapp {
+  background-color: #22c35e;
+  border-color: #1b9849;
+}
+.receipt-button a.btn-whatsapp:hover {
+  background-color: #1b9849;
+  color: white;
+}
+.receipt-button a.btn-whatsapp:active {
+  background-color: #25D366;
+  color: white;
+}
+.receipt-button a.btn-print {
+  background-color: #F26101;
+  border-color: #da5701;
+}
+.receipt-button a.btn-print:hover {
+  background-color: #da5701;
+  color: white;
+}
+.receipt-button a.btn-print:active {
+  background-color: #f3711a;
+  color: white;
+}

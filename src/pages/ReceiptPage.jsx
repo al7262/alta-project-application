@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../stores/MainStore";
 import HeaderSimple from '../components/HeaderSimple';
@@ -16,8 +16,10 @@ class ReceiptPage extends React.Component {
     }
 
     handleHeaderButton = () => {
+        this.props.handleInput('order', undefined)
         this.props.history.push('/')
     }
+
     render(){
         return (
             <React.Fragment>
@@ -30,7 +32,18 @@ class ReceiptPage extends React.Component {
                             <ReceiptFormat/>
                     </div>
                     <div className="receipt-button">
-
+                        <Link className="btn btn-email">
+                            <i className="material-icons">email</i>
+                            <span>Email</span>    
+                        </Link>
+                        <Link className="btn btn-whatsapp">
+                            <i className="material-icons">message</i>
+                            <span>Whatsapp</span>    
+                        </Link>
+                        <Link className="btn btn-print">
+                            <i className="material-icons">print</i>
+                            <span>Print</span>    
+                        </Link>
                     </div>
                 </div>
             </React.Fragment>
