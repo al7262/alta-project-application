@@ -191,6 +191,13 @@
   background-color: #003354;
   border-color: #002943;
 }
+@media (max-width: 768px) {
+  .checkout-button a.btn-back {
+    background-color: #91BED4;
+    border-color: #7498aa;
+    color: #002943;
+  }
+}
 .checkout-button a.btn-back:hover {
   background-color: #002943;
   color: white;
@@ -198,6 +205,11 @@
 .checkout-button a.btn-back:active {
   background-color: #335c76;
   color: white;
+}
+@media (max-width: 768px) {
+  .checkout-button a.btn-back:active {
+    background-color: #7498aa;
+  }
 }
 .checkout-button a.btn-checkout {
   background-color: #F26101;
@@ -224,6 +236,10 @@
 .order-summary .row {
   width: 95%;
   max-width: calc(75% + 100px);
+}
+.order-summary .row .item-name {
+  text-overflow: ellipsis;
+  text-align: left;
 }
 .order-summary .row .item-qty {
   text-align: center;

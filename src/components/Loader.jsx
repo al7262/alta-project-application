@@ -7,10 +7,10 @@ const Loader = (props) => {
             <div className="container-loader" style={{height:props.height}}>
                 <div className="d-flex flex-column justify-content-center align-items-center" 
                 style={{transform:'scale('+props.scale+')'}}>
-                    <div class="loader">
-                        <div class="loader-inner"></div>
-                        <div class="loader-inner"></div>
-                        <div class="loader-inner"></div>
+                    <div  className="loader">
+                        <div  className="loader-inner"></div>
+                        <div  className="loader-inner"></div>
+                        <div  className="loader-inner"></div>
                     </div>
                     <p style={{visibility:props.loading}}>Loading...</p>
                 </div>

@@ -38,6 +38,11 @@
   font-family: 'Muli', sans-serif;
   font-weight: 700;
 }
+@media (max-width: 768px) {
+  .category-box .category-inside span {
+    width: 60%;
+  }
+}
 .category-box .category-inside .next {
   font-size: 40px;
 }

@@ -178,6 +178,11 @@
         &.btn-back{
             background-color: @blue;
             border-color: @blue-dark1;
+            @media(max-width: 768px){
+                background-color: @skyblue;
+                border-color: @skyblue-dark1;
+                color: @blue-dark1;
+            }
             &:hover{
                 background-color: @blue-dark1;
                 color: white;
@@ -185,6 +190,9 @@
             &:active {
                 background-color: @blue-light1;
                 color: white;
+                @media(max-width: 768px){
+                    background-color: @skyblue-dark1;
+                }
             }
         }
         &.btn-checkout{
@@ -214,6 +222,10 @@
     .row{
         width: 95%;
         max-width: ~"calc(75% + 100px)";
+        .item-name{
+            text-overflow: ellipsis;
+            text-align: left;
+        }
         .item-qty{
             text-align: center;
         }
