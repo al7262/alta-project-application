@@ -49,6 +49,7 @@ class LoginPage extends React.Component {
                 return status<500
             }
         };
+        swal.showLoading()
         await this.props.handleApi(input)
         this.props.handleError()
         const data = await this.props.data
