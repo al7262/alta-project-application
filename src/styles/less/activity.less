@@ -1,0 +1,72 @@
+@import 'basic.less';
+
+.bg-activity{
+    height: ~"calc(100vh - 110px)";
+    background-color: white;
+    @media(min-width: 769px){
+        background: url('../images/background2.jpg');
+        height: ~"calc(100vh - 122px)";
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+    }
+}
+
+.activity-limited{
+    height: ~"calc(100vh - 110px)";
+    background-color: white;
+    padding: 0 !important;
+    font-family: @font-sans;
+    @media(min-width: 769px){
+        height: ~"calc(100vh - 122px)";
+        max-width: 692px !important;
+        padding: 0 15px !important;
+    }
+}
+
+.activity-box{
+    border-bottom: 0.5px solid @blue-light3;
+    background-color: white;
+    padding: 5px;
+    .name{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        span{
+            font-size: 14px;
+        }
+        h6{
+            font-weight: 800;
+        }
+    }
+    .price{
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        h5{
+            font-weight: 800;
+            margin: 0;
+        }
+    }
+}
+
+.activity-detail{
+    padding: 20px;
+    padding-top: 10px;
+    background-color: @skyblue-light2;
+    hr{
+        margin:0;
+        border-bottom: 1px solid @blue;
+    }
+    h5{
+        font-weight: 800;
+    }
+    .price{
+        text-align: center;
+    }
+    .total{
+        text-align: right;
+        font-weight: 800;
+    }
+}
