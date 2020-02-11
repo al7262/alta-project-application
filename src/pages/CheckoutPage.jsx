@@ -119,7 +119,7 @@ class CheckoutPage extends React.Component {
         await this.props.handleApi(input)
         const data = await this.props.data
         if(data!==undefined){
-            await this.setState({order:data.result})
+            await this.props.handleInput('order', data.id_order)
         }
         this.props.handleReset()
     }
@@ -164,14 +164,9 @@ class CheckoutPage extends React.Component {
                             name: customerName,
                         }
                         await this.postOrder(data)
+                        this.props.handleError()
                     },
-                    onClose: async () => {
-                        swal.fire({
-                        title: 'Order Processed!',
-                        icon: 'info',
-                        confirmButtonText: 'Roger',
-                        confirmButtonColor: '#F26101',
-                        })
+                    onAfterClose: async () => {
                         this.props.emptyCart()
                         this.handleResetState()
                         this.props.history.push('/receipt')
@@ -313,4 +308,4 @@ class CheckoutPage extends React.Component {
         )
     }
 }
-export default connect('customerList, outletDetails, isLogin, outlet, baseUrl', actions)(withRouter(CheckoutPage));
+export default connect('customerList, outletDetails, isLogin, outlet, baseUrl, data', actions)(withRouter(CheckoutPage));

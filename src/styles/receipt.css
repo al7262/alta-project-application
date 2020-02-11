@@ -14,9 +14,11 @@
 .gap-200 {
   height: 200px;
 }
+#receipt {
+  padding: 10px;
+}
 .receipt-container {
   background-color: white;
-  margin: 10px auto;
   width: 330px;
   height: auto;
   padding: 20px 10px;
@@ -42,8 +44,16 @@
 .receipt-container .receipt-logo img {
   width: 20%;
 }
+.receipt-container .receipt-logo h1 {
+  font-weight: 800;
+  margin: 0;
+  width: 70%;
+  text-align: center;
+  text-overflow: clip;
+}
 .receipt-container .receipt-address {
   width: 100%;
+  padding: 0 10px;
 }
 .receipt-container .receipt-address p {
   text-align: center;

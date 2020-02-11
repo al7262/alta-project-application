@@ -18,6 +18,7 @@ const initialState = {
     itemList: undefined,
     outlet: undefined,
     cashierName: undefined,
+    order: undefined,
     orderDetails: undefined,
 };
 
@@ -213,6 +214,28 @@ export const actions = (store) => ({
         await axios(input)
         .then(async (response) => {
             await store.setState({ outletDetails: response.data });
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    },
+
+    /**
+     * get order details from database
+     * response was saved in store.orderDetails
+     */
+    getOrderDetails: async (state) => {
+        console.log(state.order)
+        const input = {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        url: state.baseUrl+'product/checkout/'+state.order,
+        };
+        await axios(input)
+        .then(async (response) => {
+            await store.setState({ orderDetails: response.data });
         })
         .catch((error) => {
             console.warn(error);

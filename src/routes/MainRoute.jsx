@@ -10,7 +10,6 @@ import LoginPage from '../pages/LoginPage';
 import NotMatchPage from '../pages/NotMatchPage';
 import OrderPage from '../pages/OrderPage';
 import CheckoutPage from '../pages/CheckoutPage';
-import ReceiptFormat from '../components/ReceiptFormat';
 import ReceiptPage from '../pages/ReceiptPage';
 // import ActivityPage from '../pages/ActivityPage';
 
