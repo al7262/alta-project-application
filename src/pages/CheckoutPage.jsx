@@ -20,9 +20,9 @@ class CheckoutPage extends React.Component {
         finishGetCustomer: false,
         totalItemPrice: 0,
         taxAmount: 0,
+        tax: 0,
         totalEverything: 0,
         finishChecking: false,
-        order:undefined,
     }
 
     componentWillMount = async() =>{
@@ -30,8 +30,25 @@ class CheckoutPage extends React.Component {
         this.setState({finishChecking:true})
     }
 
+    handleResetState = async () => {
+        this.setState({
+            itemList: undefined,
+            promoList: undefined,
+            payment: undefined,
+            customer: undefined,
+            promo: undefined,
+            amountPaid: undefined,
+            finishGetCustomer: false,
+            totalItemPrice: 0,
+            taxAmount: 0,
+            tax: 0,
+            totalEverything: 0,
+            finishChecking: false,
+        })
+    }
+
     componentDidMount = async () => {
-        this.setState({itemList:JSON.parse(localStorage.getItem('cart'))})
+        this.setState({itemList: JSON.parse(localStorage.getItem('cart'))})
         this.props.getCustomer();
         this.setState({finishGetCustomer: true})
         await this.props.getOutletDetails()
@@ -78,11 +95,11 @@ class CheckoutPage extends React.Component {
         }
         if(Array.isArray(this.state.itemList)){
             this.state.itemList.forEach(item => {
-                totalPrice += item.data.price*item.qty
+                totalPrice += item.price*item.unit
             });
         }
         const taxAmount = totalPrice*tax/100
-        await this.setState({totalItemPrice: totalPrice, taxAmount: taxAmount, totalEverything: (totalPrice+taxAmount)})
+        await this.setState({totalItemPrice: totalPrice, taxAmount: taxAmount, totalEverything: (totalPrice+taxAmount), tax:tax})
         this.state.amountPaid=this.state.totalEverything
     }
 
@@ -102,14 +119,14 @@ class CheckoutPage extends React.Component {
         await this.props.handleApi(input)
         const data = await this.props.data
         if(data!==undefined){
-            await this.setState({order:data.result})
+            await this.props.handleInput('order', data.id_order)
         }
         this.props.handleReset()
     }
 
     handleCheckout = () =>{
         const order = this.state.itemList.map(item=>{
-            return '<div class="row"><div class="col-6 item-name">'+item.data.name+'</div><div class="col-2 item-qty">x'+item.qty+'</div><div class="col-4 price">'+formatMoney(item.data.price*item.qty, "Rp", 2, '.', ',')+'</div></div>'
+            return '<div class="container-fluid"><div class="row"><div class="col-6 text-left">'+item.name+'</div><div class="col-2">x'+item.unit+'</div><div class="col-4 text-right">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div></div>'
         })
         swal.fire({
             title: 'Confirmed?',
@@ -147,16 +164,12 @@ class CheckoutPage extends React.Component {
                             name: customerName,
                         }
                         await this.postOrder(data)
+                        this.props.handleError()
                     },
-                    onClose: async () => {
-                        swal.fire({
-                        title: 'Order Processed!',
-                        icon: 'info',
-                        confirmButtonText: 'Roger',
-                        confirmButtonColor: '#F26101',
-                        })
-                        localStorage.removeItem('cart')
-                        this.props.history.push('/')
+                    onAfterClose: async () => {
+                        this.props.emptyCart()
+                        this.handleResetState()
+                        this.props.history.push('/receipt')
                     }
                 })
             } 
@@ -192,9 +205,9 @@ class CheckoutPage extends React.Component {
                                 {Array.isArray(this.state.itemList)?
                                 this.state.itemList.map(item=>(
                                     <div className="row">
-                                        <div className="col-6 item-name">{item.data.name}</div>
-                                        <div className="col-2 item-qty">x{item.qty}</div>
-                                        <div className="col-4 price">{formatMoney(item.data.price*item.qty, "", 0, '.')}</div>
+                                        <div className="col-6 item-name">{item.name}</div>
+                                        <div className="col-2 item-qty">x{item.unit}</div>
+                                        <div className="col-4 price">{formatMoney(item.price*item.unit, "", 0, '.')}</div>
                                     </div>
                                 )):null}
                                 <div className="row">
@@ -205,7 +218,7 @@ class CheckoutPage extends React.Component {
                                     <div className="col-4 price">{formatMoney(this.state.totalItemPrice, "", 0,".")}</div>
                                 </div>
                                 <div className="row">
-                                    <div className="col-8 item-name">Pajak Toko(10%)</div>
+                                    <div className="col-8 item-name">Pajak Toko({this.state.tax}%)</div>
                                     <div className="col-4 price">+{formatMoney(this.state.taxAmount, "", 0,".")}</div>
                                 </div>
                                 <div className="row">
@@ -285,7 +298,7 @@ class CheckoutPage extends React.Component {
                             <i className="material-icons">arrow_back_ios</i>
                             <span>Kembali</span>
                         </Link>
-                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
+                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''||this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
                             <span>Selesai</span>
                             <i className="material-icons">arrow_back_ios</i>
                         </Link>
@@ -295,4 +308,4 @@ class CheckoutPage extends React.Component {
         )
     }
 }
-export default connect('customerList, outletDetails, isLogin, outlet, baseUrl', actions)(withRouter(CheckoutPage));
+export default connect('customerList, outletDetails, isLogin, outlet, baseUrl, data', actions)(withRouter(CheckoutPage));
