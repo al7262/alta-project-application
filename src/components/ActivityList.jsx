@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/activity.css'
+import '../styles/header-simple.css'
 import {formatMoney} from 'accounting'
 
 const ActivityList = (props) => {
