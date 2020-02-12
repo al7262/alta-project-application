@@ -3,6 +3,7 @@ import { withRouter, Link, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../stores/MainStore";
 import '../styles/activity.css';
+import {formatMoney} from 'accounting';
 
 import Header from '../components/Header';
 import SearchBarAbove from '../components/SearchBarAbove';
@@ -134,6 +135,15 @@ class ActivityPage extends React.Component {
                                 :<h4 className="text-center pt-5">Belum ada riwayat aktivitas</h4>
                             :dataToShow}
                             <div className="row gap-100"></div>
+                        </div>
+                        <div className="container summary-limited fixed-bottom">
+                            <div className="activity-summary">
+                                <i className="material-icons">library_books</i>
+                                <div className="summary-detail">
+                                    <h6>Total Penjualan: {totalTransaction}</h6>
+                                    <h4>{formatMoney(totalSales, 'Rp', 2, '.', ',')}</h4>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
