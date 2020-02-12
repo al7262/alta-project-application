@@ -18,6 +18,8 @@ const initialState = {
     itemList: undefined,
     outlet: undefined,
     cashierName: undefined,
+    order: undefined,
+    orderDetails: undefined,
 };
 
 export const store = createStore(initialState);
@@ -134,11 +136,11 @@ export const actions = (store) => ({
      */
     getCategory: async (state) => {
         const input = {
-        method: 'get',
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        url: state.baseUrl+'product/category',
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            url: state.baseUrl+'product/category',
         };
         await axios(input)
         .then(async (response) => {
@@ -219,6 +221,28 @@ export const actions = (store) => ({
     },
 
     /**
+     * get order details from database
+     * response was saved in store.orderDetails
+     */
+    getOrderDetails: async (state) => {
+        console.log(state.order)
+        const input = {
+        method: 'get',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        url: state.baseUrl+'product/checkout/'+state.order,
+        };
+        await axios(input)
+        .then(async (response) => {
+            await store.setState({ orderDetails: response.data });
+        })
+        .catch((error) => {
+            console.warn(error);
+        });
+    },
+
+    /**
      * get list customer from database
      * response was saved in store.data
      */
@@ -292,16 +316,14 @@ export const actions = (store) => ({
 
     addToCart: async (state, input) => {
         const cart = localStorage.getItem('cart') === null ? [] : JSON.parse(localStorage.getItem('cart'));
-        const dict = {
-            data: input,
-            qty: 1,
-        };
+        const dict = input;
+        dict['unit'] = 1
         cart.push(dict);
+        console.log(cart)
         localStorage.setItem('cart', JSON.stringify(cart));
     },
     
     emptyCart: (state) =>{
-        console.log('here i am emptying this fucking thing')
         localStorage.removeItem('cart')
     },
       
@@ -311,15 +333,15 @@ export const actions = (store) => ({
         console.log(cart)
         if(Array.isArray(cart)){
             cart.forEach(item => {
-                if(item.data.id===id){
-                    item.qty += qty
-                    if(item.qty>item.data.stock){
-                        item.qty=item.data.stock
+                if(item.id===id){
+                    item.unit += qty
+                    if(item.unit>item.stock){
+                        item.unit=item.stock
                     }
                 }
             });
             newCart = cart.filter((item)=>{
-                return item.qty>0
+                return item.unit>0
             })
         }
         localStorage.setItem('cart', JSON.stringify(newCart))
