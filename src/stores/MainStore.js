@@ -165,7 +165,7 @@ export const actions = (store) => ({
             params: {
                 category: category,
                 name: search,
-                id_outlet: store.getState().outlet
+                id_outlet: state.outlet
             }
         };
         await axios(input)
