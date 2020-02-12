@@ -155,7 +155,7 @@ export const actions = (store) => ({
      * get list item based on category from database
      * response was saved in store.data
      */
-    getItem: async (state, category) => {
+    getItem: async (state, category=undefined, search=undefined) => {
         const input = {
             method: 'get',
             headers: {
@@ -164,7 +164,8 @@ export const actions = (store) => ({
             url: state.baseUrl+'product',
             params: {
                 category: category,
-                id_outlet: store.getState().outlet
+                name: search,
+                id_outlet: state.outlet
             }
         };
         await axios(input)

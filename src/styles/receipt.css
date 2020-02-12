@@ -26,7 +26,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  font-family: 'Muli', sans-serif;
 }
 .receipt-container hr {
   width: 100%;
@@ -163,7 +162,7 @@
   margin: 0;
   padding: 0;
   margin-top: -30px;
-  font-family: 'Passion One', sans-serif;
+  font-weight: 900;
 }
 .receipt-limited {
   padding-right: 0 !important;
@@ -202,7 +201,6 @@
   }
 }
 .receipt-button a span {
-  font-family: 'Muli', sans-serif;
   font-weight: 800;
 }
 .receipt-button a i {
