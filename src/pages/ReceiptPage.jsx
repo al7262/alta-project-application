@@ -6,7 +6,8 @@ import HeaderSimple from '../components/HeaderSimple';
 import ReceiptFormat from '../components/ReceiptFormat';
 import Loader from '../components/Loader';
 import htmlToImage from 'html-to-image';
-import download from 'downloadjs';
+import printJs from 'print-js';
+import swal from 'sweetalert2';
 
 
 class ReceiptPage extends React.Component {
@@ -36,13 +37,15 @@ class ReceiptPage extends React.Component {
     }
 
     receiptToImageSave = () => {
+        swal.showLoading()
         const receipt = document.getElementById('receipt')
-        const time = Date.now()
-        const name = 'receipt-'+time.toString()
+        // const time = Date.now()
+        // const name = 'receipt-'+time.toString()
         htmlToImage
         .toJpeg(receipt)
         .then((dataUrl) => {
-            download(dataUrl, name+'.jpg');
+            printJs(dataUrl, 'image')
+            swal.close()
         });
     }
 

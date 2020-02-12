@@ -298,7 +298,7 @@ class CheckoutPage extends React.Component {
                             <i className="material-icons">arrow_back_ios</i>
                             <span>Kembali</span>
                         </Link>
-                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
+                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''||this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
                             <span>Selesai</span>
                             <i className="material-icons">arrow_back_ios</i>
                         </Link>
