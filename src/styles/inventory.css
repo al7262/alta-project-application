@@ -1,0 +1,124 @@
+/* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
+.bg-inventory {
+  height: calc(100vh - 110px);
+  background-color: #003354;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 769px) {
+  .bg-inventory {
+    background: url('../images/background2.jpg');
+    height: calc(100vh - 122px);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+.inventory-limited {
+  height: calc(100vh - 110px);
+  background-color: white;
+  padding: 0 !important;
+  font-family: 'Muli', sans-serif;
+  overflow: auto;
+}
+@media (min-width: 769px) {
+  .inventory-limited {
+    height: calc(100vh - 122px);
+    max-width: 692px !important;
+  }
+}
+.inventory-box {
+  border-bottom: 0.5px solid #b3c2cc;
+  background-color: white;
+}
+.inventory-box .name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 0;
+}
+.inventory-box .name i {
+  font-size: 48px;
+  margin: 10px;
+}
+.inventory-box .name h5 {
+  width: calc(100% - 68px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 800;
+  margin: 0;
+}
+.inventory-box .price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  padding-left: 0;
+}
+.inventory-box .price h5 {
+  font-weight: 600;
+  margin: 0;
+}
+@media (max-width: 384px) {
+  .inventory-box .price h5 {
+    font-size: 18px;
+  }
+}
+.inventory-detail {
+  padding: 20px;
+  padding-top: 10px;
+  background-color: #c8dfea;
+}
+.inventory-detail hr {
+  margin: 0;
+  border-bottom: 1px solid #003354;
+}
+.inventory-detail h5 {
+  font-weight: 800;
+}
+.inventory-detail .name {
+  font-weight: 800;
+}
+.inventory-summary {
+  background-color: #F26101;
+  padding: 10px 20px;
+  width: 100%;
+  height: 70px;
+  border-radius: 15px;
+  display: flex;
+}
+.inventory-summary i {
+  font-size: 48px;
+  margin-right: 20px;
+  color: white;
+}
+.inventory-summary .summary-detail {
+  color: white;
+  font-family: 'Muli', sans-serif;
+}
+.inventory-summary .summary-detail h6,
+.inventory-summary .summary-detail h4 {
+  margin: 0;
+}
+.inventory-summary .summary-detail h4 {
+  font-weight: 800;
+}
