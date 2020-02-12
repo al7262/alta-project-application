@@ -11,7 +11,7 @@ import NotMatchPage from '../pages/NotMatchPage';
 import OrderPage from '../pages/OrderPage';
 import CheckoutPage from '../pages/CheckoutPage';
 import ReceiptPage from '../pages/ReceiptPage';
-// import ActivityPage from '../pages/ActivityPage';
+import ActivityPage from '../pages/ActivityPage';
 
 
 const Mainroute = () => {
@@ -24,7 +24,7 @@ const Mainroute = () => {
                     <Route exact path="/checkout" component={CheckoutPage}/>
                     <Route exact path="/receipt" component={ReceiptPage}/>
                     <Route exact path="/order" component={OrderPage}/>
-                    {/* <Route exact path="/activity" component={ActivityPage}/> */}
+                    <Route exact path="/activity" component={ActivityPage}/>
                     <Route exact path="/order/:category" component={OrderPage}/>
                     <Route component={NotMatchPage}/>
                 </Switch>
