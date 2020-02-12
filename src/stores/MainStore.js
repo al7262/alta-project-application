@@ -136,11 +136,11 @@ export const actions = (store) => ({
      */
     getCategory: async (state) => {
         const input = {
-        method: 'get',
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        url: state.baseUrl+'product/category',
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            url: state.baseUrl+'product/category',
         };
         await axios(input)
         .then(async (response) => {

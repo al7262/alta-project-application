@@ -2,7 +2,12 @@
 
 .bg-activity{
     height: ~"calc(100vh - 110px)";
-    background-color: white;
+    background-color: @blue;
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     @media(min-width: 769px){
         background: url('../images/background2.jpg');
         height: ~"calc(100vh - 122px)";
@@ -17,10 +22,10 @@
     background-color: white;
     padding: 0 !important;
     font-family: @font-sans;
+    overflow: auto;
     @media(min-width: 769px){
         height: ~"calc(100vh - 122px)";
         max-width: 692px !important;
-        padding: 0 15px !important;
     }
 }
 
@@ -47,6 +52,9 @@
         h5{
             font-weight: 800;
             margin: 0;
+            @media(max-width: 384px){
+                font-size: 18px;
+            }
         }
     }
 }
@@ -68,5 +76,40 @@
     .total{
         text-align: right;
         font-weight: 800;
+    }
+}
+
+.date-option{
+    background-color: white;
+    font-family: @font-sans;
+    @media(min-width: 769px){
+        max-width: 692px !important;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid @blue-light3;
+    a{
+        color: @sunset;
+        text-decoration: none;
+        i{
+            font-size: 32px;
+        }
+        &:hover{
+            color: @sunset-light1;
+        }
+        &:active{
+            color: @sunset-dark1;
+        }
+        #Today{
+            visibility: hidden;
+        }
+        &.disabled{
+            color: @sunset-dark3;
+        }
+    }
+    h6{
+        width: 100px;
+        text-align: center;
     }
 }

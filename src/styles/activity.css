@@ -16,7 +16,12 @@
 }
 .bg-activity {
   height: calc(100vh - 110px);
-  background-color: white;
+  background-color: #003354;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 @media (min-width: 769px) {
   .bg-activity {
@@ -32,12 +37,12 @@
   background-color: white;
   padding: 0 !important;
   font-family: 'Muli', sans-serif;
+  overflow: auto;
 }
 @media (min-width: 769px) {
   .activity-limited {
     height: calc(100vh - 122px);
     max-width: 692px !important;
-    padding: 0 15px !important;
   }
 }
 .activity-box {
@@ -66,6 +71,11 @@
   font-weight: 800;
   margin: 0;
 }
+@media (max-width: 384px) {
+  .activity-box .price h5 {
+    font-size: 18px;
+  }
+}
 .activity-detail {
   padding: 20px;
   padding-top: 10px;
@@ -84,4 +94,40 @@
 .activity-detail .total {
   text-align: right;
   font-weight: 800;
+}
+.date-option {
+  background-color: white;
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #b3c2cc;
+}
+@media (min-width: 769px) {
+  .date-option {
+    max-width: 692px !important;
+  }
+}
+.date-option a {
+  color: #F26101;
+  text-decoration: none;
+}
+.date-option a i {
+  font-size: 32px;
+}
+.date-option a:hover {
+  color: #f3711a;
+}
+.date-option a:active {
+  color: #da5701;
+}
+.date-option a #Today {
+  visibility: hidden;
+}
+.date-option a.disabled {
+  color: #491d00;
+}
+.date-option h6 {
+  width: 100px;
+  text-align: center;
 }
