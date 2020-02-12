@@ -31,7 +31,7 @@ class InventoryPage extends React.Component {
     getInventoryList = async (search=undefined)=>{
         const input = {
             method: "get",
-            url: await this.props.baseUrl+"inventory/1",
+            url: await this.props.baseUrl+"inventory/"+this.props.outlet,
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -79,17 +79,17 @@ class InventoryPage extends React.Component {
             })
         }
         console.log(dataToShow)
-        // if(this.props.outlet===undefined){
-        //     return <Redirect to="/"></Redirect>
-        // }
-        // if(!this.state.finishChecking){
-        //     return <Loader
-        //         height='100vh'
-        //         scale='3'/>
-        // }
-        // if(!this.props.isLogin){
-        //     return <Redirect to='/login'/>
-        // }
+        if(this.props.outlet===undefined){
+            return <Redirect to="/"></Redirect>
+        }
+        if(!this.state.finishChecking){
+            return <Loader
+                height='100vh'
+                scale='3'/>
+        }
+        if(!this.props.isLogin){
+            return <Redirect to='/login'/>
+        }
         return (
             <React.Fragment>
                 <Header
