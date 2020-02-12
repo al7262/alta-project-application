@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import '../styles/header-simple.css'
+import '../styles/activity.css'
 import {formatMoney} from 'accounting'
 
 const ActivityList = (props) => {

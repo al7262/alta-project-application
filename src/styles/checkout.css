@@ -142,6 +142,44 @@
 .customer-form .btn-add-customer:active {
   background-color: #f3711a;
 }
+.new-customer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px 0;
+}
+.new-customer span#warning {
+  width: 100%;
+  text-align: center;
+  color: #da5701;
+  margin: 0;
+  font-family: 'Muli', sans-serif;
+  font-size: 12px;
+}
+.new-customer input {
+  width: 80%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #ffd78d;
+  background: white;
+  transition: 0.2s ease-in-out;
+}
+.new-customer input[type="text"] {
+  border-radius: 10px 10px 0 0;
+  border-bottom: 0;
+}
+.new-customer input[type="email"] {
+  border-radius: 0 0 10px 10px;
+}
+.new-customer input:hover {
+  background-color: #ffd78d;
+}
+.new-customer input:focus {
+  background: #ffefd1;
+}
 .payment-form {
   display: flex;
   align-items: center;
