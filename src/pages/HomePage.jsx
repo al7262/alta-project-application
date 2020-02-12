@@ -81,7 +81,7 @@ class HomePage extends React.Component {
                             <Link className={"btn btn-info btn-choice " + (this.props.outlet===undefined? 'disabled': '')} to='/order' onClick={()=>this.props.emptyCart()}>
                                 <span>Pesanan Baru</span>
                             </Link>
-                            <Link className={"btn btn-info btn-choice " + (this.props.outlet===undefined? 'disabled': '')} to=''>
+                            <Link className={"btn btn-info btn-choice " + (this.props.outlet===undefined? 'disabled': '')} to='/activity'>
                                 <span>Lihat Aktivitas</span>
                             </Link>
                         </div>
