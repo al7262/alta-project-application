@@ -1,0 +1,242 @@
+/* Color Theme Swatches in Hex */
+.gap-25 {
+  height: 25px;
+}
+.gap-50 {
+  height: 50px;
+}
+.gap-100 {
+  height: 100px;
+}
+.gap-150 {
+  height: 150px;
+}
+.gap-200 {
+  height: 200px;
+}
+.bg-customer {
+  height: calc(100vh - 110px);
+  background-color: #003354;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 769px) {
+  .bg-customer {
+    background: url('../images/background2.jpg');
+    height: calc(100vh - 122px);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+}
+.customer-limited {
+  height: calc(100vh - 110px);
+  background-color: white;
+  padding: 0 !important;
+  font-family: 'Muli', sans-serif;
+  overflow: auto;
+}
+@media (min-width: 769px) {
+  .customer-limited {
+    height: calc(100vh - 122px);
+    max-width: 692px !important;
+  }
+}
+.customer-box {
+  border-bottom: 0.5px solid #b3c2cc;
+  background-color: white;
+  color: #002943;
+}
+.customer-box .name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-right: 0;
+}
+.customer-box .name i {
+  font-size: 48px;
+  margin: 10px;
+}
+.customer-box .name h5 {
+  width: calc(100% - 68px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 800;
+  margin: 0;
+}
+.customer-box .price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+}
+.customer-box .price a {
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
+  color: #da5701;
+}
+.customer-box .price a i {
+  font-size: 24px;
+}
+.customer-box .price a:hover {
+  color: #F26101;
+}
+.customer-box .price a:active {
+  color: #793101;
+}
+.customer-detail {
+  padding: 20px;
+  padding-top: 10px;
+  background-color: #c8dfea;
+  color: #003354;
+}
+.customer-detail hr {
+  margin: 0;
+  border-bottom: 1px solid #003354;
+}
+.customer-detail h5 {
+  font-weight: 800;
+}
+.customer-detail .name {
+  font-weight: 800;
+}
+.customer-summary {
+  background-color: #F26101;
+  padding: 10px 20px;
+  width: 100%;
+  height: 70px;
+  border-radius: 15px;
+  display: flex;
+}
+.customer-summary i {
+  font-size: 48px;
+  margin-right: 20px;
+  color: white;
+}
+.customer-summary .summary-detail {
+  color: white;
+  font-family: 'Muli', sans-serif;
+}
+.customer-summary .summary-detail h6,
+.customer-summary .summary-detail h4 {
+  margin: 0;
+}
+.customer-summary .summary-detail h4 {
+  font-weight: 800;
+}
+.customer-modal {
+  font-family: 'Muli', sans-serif;
+}
+.customer-modal .modal-title {
+  color: #002943;
+  font-weight: 800;
+}
+.customer-modal .modal-body {
+  display: flex;
+  flex-direction: column;
+}
+.customer-modal .modal-body span#warning {
+  width: 100%;
+  text-align: center;
+  color: #da5701;
+  margin: 0;
+  font-family: 'Muli', sans-serif;
+  font-size: 12px;
+}
+.customer-modal .modal-body form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.customer-modal .modal-body form input {
+  width: 80%;
+  padding: 5px;
+  text-align: center;
+  font-family: 'Muli', sans-serif;
+  height: 40px;
+  border: 1px solid #ffd78d;
+  background: white;
+  transition: 0.2s ease-in-out;
+}
+.customer-modal .modal-body form input#name {
+  border-radius: 10px 10px 0 0;
+}
+.customer-modal .modal-body form input#phone {
+  border-bottom: 0;
+  border-top: 0;
+}
+.customer-modal .modal-body form input#email {
+  border-radius: 0 0 10px 10px;
+}
+.customer-modal .modal-body form input:hover {
+  background-color: #ffd78d;
+}
+.customer-modal .modal-body form input:focus {
+  background: #ffefd1;
+}
+.customer-modal .modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.customer-modal .modal-footer .btn-close {
+  background-color: #003354;
+  border-color: #002943;
+  color: white;
+}
+.customer-modal .modal-footer .btn-close:hover {
+  background-color: #002943;
+  color: white;
+}
+.customer-modal .modal-footer .btn-close:active {
+  background-color: #335c76;
+  color: white;
+}
+.customer-modal .modal-footer .btn-add {
+  background-color: #F26101;
+  border-color: #da5701;
+  color: white;
+}
+.customer-modal .modal-footer .btn-add:hover {
+  background-color: #da5701;
+  color: white;
+}
+.customer-modal .modal-footer .btn-add:active {
+  background-color: #f3711a;
+  color: white;
+}
+.customer-add {
+  height: 100px;
+  font-family: 'Muli', sans-serif;
+  display: flex;
+  padding: 25px !important;
+  justify-content: flex-end;
+  align-items: center;
+}
+@media (min-width: 769px) {
+  .customer-add {
+    max-width: 692px !important;
+  }
+}
+.customer-add .btn-add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #003354;
+  border-color: #003354;
+  color: #ffae1a;
+}
+.customer-add .btn-add:hover {
+  background-color: #335c76;
+}
+.customer-add .btn-add:active {
+  background-color: #002943;
+}
