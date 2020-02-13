@@ -8,8 +8,8 @@ const initialState = {
     error: undefined,
     isOwner: false,
     isLogin: false,
-    baseUrl: 'http://0.0.0.0:5000/',
-    // baseUrl: 'https://api.easy.my.id/',
+    // baseUrl: 'http://0.0.0.0:5000/',
+    baseUrl: 'https://api.easy.my.id/',
     claims: undefined,
     outletList: undefined,
     outletDetails: undefined,
@@ -247,13 +247,16 @@ export const actions = (store) => ({
      * get list customer from database
      * response was saved in store.data
      */
-    getCustomer: async (state) => {
+    getCustomer: async (state, value=undefined) => {
         const input = {
-        method: 'get',
-        headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-        url: state.baseUrl+'customer',
+            method: 'get',
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            url: state.baseUrl+'customer',
+            params: {
+                keyword: value
+            },
         };
         await axios(input)
         .then(async (response) => {
