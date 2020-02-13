@@ -29,11 +29,11 @@ const Header = (props) => {
                         <li className={"nav-item " + (props.pageLocation==='Aktivitas'? 'active' : '')}>
                             <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'':'/activity'}>Aktivitas</Link>
                         </li>
-                        <li className={"nav-item " + (props.pageLocation==='Pelanggan'? 'active' : '')}>
-                            <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'':'/customer'}>Pelanggan</Link>
-                        </li>
                         <li className={"nav-item " + (props.pageLocation==='Inventaris'? 'active' : '')}>
                             <Link className={"nav-link " + (props.outlet===undefined?'disabled':'')} to={props.outlet===undefined?'':'/inventory'}>Inventaris</Link>
+                        </li>
+                        <li className={"nav-item " + (props.pageLocation==='Pelanggan'? 'active' : '')}>
+                            <Link className="nav-link " to='/customer'>Pelanggan</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link" to="/login" onClick={props.handleLogout}>Logout</Link>
