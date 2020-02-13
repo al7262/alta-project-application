@@ -12,7 +12,8 @@ import OrderPage from '../pages/OrderPage';
 import CheckoutPage from '../pages/CheckoutPage';
 import ReceiptPage from '../pages/ReceiptPage';
 import ActivityPage from '../pages/ActivityPage';
-
+import InventoryPage from '../pages/InventoryPage';
+import CustomerPage from '../pages/CustomerPage';
 
 const Mainroute = () => {
     return (
@@ -25,6 +26,8 @@ const Mainroute = () => {
                     <Route exact path="/receipt" component={ReceiptPage}/>
                     <Route exact path="/order" component={OrderPage}/>
                     <Route exact path="/activity" component={ActivityPage}/>
+                    <Route exact path="/inventory" component={InventoryPage}/>
+                    <Route exact path="/customer" component={CustomerPage}/>
                     <Route exact path="/order/:category" component={OrderPage}/>
                     <Route component={NotMatchPage}/>
                 </Switch>

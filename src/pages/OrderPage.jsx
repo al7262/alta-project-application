@@ -12,6 +12,7 @@ import ItemList from '../components/ItemList';
 import Loader from '../components/Loader';
 class OrderPage extends React.Component {
     state = {
+        search: '',
         isLoading: true,
         finishChecking: false,
         totalItem: 0,
@@ -50,6 +51,19 @@ class OrderPage extends React.Component {
         this.state.totalItem=totalItem
     }
 
+    handleSearch = async(event) => {
+        const name = event.target.name
+        let value = event.target.value
+        this.setState({[name]:value})
+        this.props.history.replace('/order/search?name='+value)
+        if(value===''){
+            this.props.history.replace('/order')
+        }
+        this.setState({isLoading:true})
+        await this.props.getItem(undefined, value)
+        this.setState({isLoading:false})
+    }
+
     render(){
         let dataToShow;
         const category = this.props.match.params.category
@@ -83,6 +97,7 @@ class OrderPage extends React.Component {
             })
         }
         this.updateCartData()
+
         if(this.props.outlet===undefined){
             return <Redirect to="/"></Redirect>
         }
@@ -98,7 +113,10 @@ class OrderPage extends React.Component {
             <React.Fragment>
                 <Header 
                 pageLocation='Pesanan'/>
-                <SearchBarAbove/>
+                <SearchBarAbove
+                    search={this.state.search}
+                    handleOnChange={this.handleSearch}
+                    placeholder='Cari nama barang'/>
                 {this.state.isLoading?
                 <div className="order-container-loader">
                     <Loader scale='1.5'/>

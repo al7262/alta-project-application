@@ -15,6 +15,9 @@ class CheckoutPage extends React.Component {
         promoList: undefined,
         payment: undefined,
         customer: undefined,
+        phone: '',
+        email: '',
+        addCustomer: false,
         promo: undefined,
         amountPaid: undefined,
         finishGetCustomer: false,
@@ -59,20 +62,25 @@ class CheckoutPage extends React.Component {
         const name=event.target.name;
         let value = event.target.value;
         if(name==='customer'){
-            if(Array.isArray(this.props.CustomerList)){
+            if(Array.isArray(this.props.customerList)){
                 const addButton = document.getElementById('addCustomer')
                 let isMatch=false;
                 const valRegex = new RegExp(value.toLowerCase())
-                isMatch = await this.props.CustomerList.some(element => {
-                    if(element.toLowerCase().match(valRegex)){
+                isMatch = await this.props.customerList.some(element => {
+                    const name = element.id+'-'+element.fullname+(element.phone_number!==''?element.phone_number:element.email)
+                    if(name.toLowerCase().match(valRegex)){
                         return true
                     }
                     return false
                 });
                 if(!isMatch){
                     addButton.setAttribute('class','btn btn-add-customer')
+                    addButton.setAttribute('data-target', '#addNewCustomer')
                 } else{
                     addButton.setAttribute('class','btn btn-add-customer disabled')
+                    addButton.removeAttribute('data-target')
+                    document.getElementById('addNewCustomer').setAttribute('class', 'new-customer collapse')
+                    this.setState({addCustomer:false})
                 }
             }
             if(value!==''){
@@ -124,56 +132,99 @@ class CheckoutPage extends React.Component {
         this.props.handleReset()
     }
 
-    handleCheckout = () =>{
-        const order = this.state.itemList.map(item=>{
-            return '<div class="container-fluid"><div class="row"><div class="col-6 text-left">'+item.name+'</div><div class="col-2">x'+item.unit+'</div><div class="col-4 text-right">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div></div>'
-        })
-        swal.fire({
-            title: 'Confirmed?',
-            html: order,
-            icon: 'question',
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'No',
-            confirmButtonColor: '#F26101',
-            cancelButtonColor: '#003354',
-            showCancelButton: true
-        }).then(result => {
-            if(result.value){
-                swal.fire({
-                    title: 'Processing your order....',
-                    timer: 3000,
-                    onBeforeOpen: async () => {
-                        swal.showLoading()
-                        let customer = this.state.customer, customerId=null, customerName
-                        if(customer!==undefined){
-                            customer=await customer.split('-')
-                            if(Array.isArray(customer)){
-                                customerId = customer[0]
-                                customerName = customer[1]
-                            } else{
-                                customerName=customer
+    checkInputCustomer() {
+        if(this.state.addCustomer){
+            const warning = document.getElementById('warning')
+            const phoneReg = new RegExp(/^[0-9]*$/)
+            const emailReg = new RegExp(/^(\w+[.-_]?\w+)@(\w+[.-_]?\w+).(\w{2,3})$/);
+            if(this.state.phone===''&&this.state.email===''){
+                warning.innerHTML = 'Harap masukkan nomor telepon atau email'
+                return false
+            } else if(!this.state.phone.match(phoneReg)&&this.state.phone!==''){
+                console.log(this.state.addCustomer)
+                warning.innerHTML = 'Harap masukkan nomor telepon dengan benar'
+                return false
+            } else if(!this.state.email.match(emailReg)&&this.state.email!==''){
+                warning.innerHTML = 'Harap masukkan email dengan benar'
+                return false
+            }
+            console.log(this.state.customerName)
+            const input = {
+                method: "post",
+                url: this.props.baseUrl+"customer/create",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem('token')}`,
+                },
+                data: {
+                    fullname: this.state.customer,
+                    phone_number: this.state.phone,
+                    email: this.state.email
+                },
+                validateStatus: (status) => {
+                    return status<500
+                }
+            }
+            this.props.handleApi(input)
+            return true
+        }
+        return true
+    }
+
+    handleCheckout = () => {
+        const checkInput = this.checkInputCustomer()
+        if(checkInput){
+            const order = this.state.itemList.map(item=>{
+                return '<div class="container-fluid"><div class="row"><div class="col-6 text-left">'+item.name+'</div><div class="col-2">x'+item.unit+'</div><div class="col-4 text-right">'+formatMoney(item.price*item.unit, "Rp", 2, '.', ',')+'</div></div></div>'
+            })
+            swal.fire({
+                title: 'Confirmed?',
+                html: order,
+                icon: 'question',
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No',
+                confirmButtonColor: '#F26101',
+                cancelButtonColor: '#003354',
+                showCancelButton: true
+            }).then(result => {
+                if(result.value){
+                    swal.fire({
+                        title: 'Processing your order....',
+                        timer: 3000,
+                        onBeforeOpen: async () => {
+                            swal.showLoading()
+                            let customer = this.state.customer, customerId=null, customerName
+                            if(customer!==undefined){
+                                customer=await customer.split('-')
+                                if(customer.length>=2){
+                                    customerId = customer[0]
+                                    customerName = customer[1]
+                                } else{
+                                    customerName=customer[0]
+                                }
                             }
+                            const data = {
+                                item_list: this.state.itemList,
+                                promo:'',
+                                payment_method: this.state.payment,
+                                paid_price: this.state.amountPaid,
+                                id_customers: customerId,
+                                id_outlet: this.props.outlet,
+                                name: customerName,
+                            }
+                            console.log(data)
+                            await this.postOrder(data)
+                            this.props.handleError()
+                        },
+                        onAfterClose: async () => {
+                            this.props.emptyCart()
+                            this.handleResetState()
+                            this.props.history.push('/receipt')
                         }
-                        const data = {
-                            item_list: this.state.itemList,
-                            promo:'',
-                            payment_method: this.state.payment,
-                            paid_price: this.state.amountPaid,
-                            id_customers: customerId,
-                            id_outlet: this.props.outlet,
-                            name: customerName,
-                        }
-                        await this.postOrder(data)
-                        this.props.handleError()
-                    },
-                    onAfterClose: async () => {
-                        this.props.emptyCart()
-                        this.handleResetState()
-                        this.props.history.push('/receipt')
-                    }
-                })
-            } 
-        })
+                    })
+                } 
+            })
+        }
     }
 
     render(){
@@ -253,21 +304,30 @@ class CheckoutPage extends React.Component {
                             </h5>
                             <hr/>
                             <form className="customer-form" autoComplete="off" onSubmit={e=>e.preventDefault()}>
-                            {this.state.finishGetCustomer?
-                            <React.Fragment>
-                                <input list="customer" name="customer" onChange={e=>this.handleOnChange(e)}/>
-                                <datalist id="customer">
-                                    {Array.isArray(this.props.customerList)?
-                                    this.props.customerList.map(item=>(
-                                        <option value={item.id+'-'+item.fullname}>{item.fullname} ({item.phone_number!==''?item.phone_number:item.email})</option>
-                                        ))
+                                {this.state.finishGetCustomer?
+                                <React.Fragment>
+                                    <input list="customer" name="customer" onChange={e=>this.handleOnChange(e)}/>
+                                    <datalist id="customer">
+                                        {Array.isArray(this.props.customerList)?
+                                        this.props.customerList.map(item=>(
+                                            <option value={item.id+'-'+item.fullname}>{item.fullname} ({item.phone_number!==''?item.phone_number:item.email})</option>
+                                            ))
                                         :null}
-                                </datalist>
-                                <button className="btn btn-add-customer disabled" id="addCustomer">+add</button>
-                            </React.Fragment>
-                            :
-                            <Loader/>
-                            }
+                                    </datalist>
+                                    <button className="btn btn-add-customer disabled" 
+                                    id="addCustomer" data-toggle="collapse"
+                                    aria-controls="navbarToggleExternalContent"
+                                    aria-expanded="false" aria-label="Toggle navigation"
+                                    onClick={()=>this.setState({addCustomer:(this.state.addCustomer?false:true)})}>+add</button>
+                                </React.Fragment>
+                                :
+                                <Loader/>
+                                }
+                            </form>
+                            <form className="new-customer collapse" id="addNewCustomer" autoComplete="off" onSubmit={e=>e.preventDefault()}>
+                                <span id="warning"></span>
+                                <input type="text" name="phone" placeholder="Masukkan nomor telepon" onChange={e=>this.handleOnChange(e)} maxLength="15"/>
+                                <input type="email" name="email" placeholder="Masukkan email" onChange={e=>this.handleOnChange(e)}/>
                             </form>
                         </div>
                         <div className="row section-box">
@@ -298,7 +358,7 @@ class CheckoutPage extends React.Component {
                             <i className="material-icons">arrow_back_ios</i>
                             <span>Kembali</span>
                         </Link>
-                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''||this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
+                        <Link className={"btn btn-checkout " + ((this.state.amountPaid===undefined||this.state.amountPaid==='')&&this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
                             <span>Selesai</span>
                             <i className="material-icons">arrow_back_ios</i>
                         </Link>

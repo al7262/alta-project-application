@@ -14,7 +14,7 @@
 .gap-200 {
   height: 200px;
 }
-.bg-activity {
+.bg-inventory {
   height: calc(100vh - 110px);
   background-color: #003354;
   padding: 0 !important;
@@ -24,7 +24,7 @@
   align-items: center;
 }
 @media (min-width: 769px) {
-  .bg-activity {
+  .bg-inventory {
     background: url('../images/background2.jpg');
     height: calc(100vh - 122px);
     background-size: cover;
@@ -32,7 +32,7 @@
     background-position: center;
   }
 }
-.activity-limited {
+.inventory-limited {
   height: calc(100vh - 110px);
   background-color: white;
   padding: 0 !important;
@@ -40,100 +40,68 @@
   overflow: auto;
 }
 @media (min-width: 769px) {
-  .activity-limited {
+  .inventory-limited {
     height: calc(100vh - 122px);
     max-width: 692px !important;
   }
 }
-.activity-box {
+.inventory-box {
   border-bottom: 0.5px solid #b3c2cc;
   background-color: white;
-  padding: 5px;
   color: #002943;
 }
-.activity-box .name {
+.inventory-box .name {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-.activity-box .name span {
-  font-size: 14px;
-}
-.activity-box .name h6 {
-  font-weight: 800;
-}
-.activity-box .price {
-  display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
+  padding-right: 0;
 }
-.activity-box .price h5 {
+.inventory-box .name i {
+  font-size: 48px;
+  margin: 10px;
+  margin-left: 0;
+}
+.inventory-box .name h5 {
+  width: calc(100% - 68px);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
   font-weight: 800;
   margin: 0;
 }
+.inventory-box .price {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: right;
+  padding-left: 0;
+}
+.inventory-box .price h5 {
+  font-weight: 600;
+  margin: 0;
+}
 @media (max-width: 384px) {
-  .activity-box .price h5 {
+  .inventory-box .price h5 {
     font-size: 18px;
   }
 }
-.activity-detail {
+.inventory-detail {
   padding: 20px;
   padding-top: 10px;
   background-color: #c8dfea;
   color: #003354;
 }
-.activity-detail hr {
+.inventory-detail hr {
   margin: 0;
   border-bottom: 1px solid #003354;
 }
-.activity-detail h5 {
+.inventory-detail h5 {
   font-weight: 800;
 }
-.activity-detail .price {
-  text-align: center;
-}
-.activity-detail .total {
-  text-align: right;
+.inventory-detail .name {
   font-weight: 800;
 }
-.date-option {
-  background-color: white;
-  font-family: 'Muli', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid #b3c2cc;
-}
-@media (min-width: 769px) {
-  .date-option {
-    max-width: 692px !important;
-  }
-}
-.date-option a {
-  color: #F26101;
-  text-decoration: none;
-}
-.date-option a i {
-  font-size: 32px;
-}
-.date-option a:hover {
-  color: #f3711a;
-}
-.date-option a:active {
-  color: #da5701;
-}
-.date-option a #Today {
-  visibility: hidden;
-}
-.date-option a.disabled {
-  color: #491d00;
-}
-.date-option h6 {
-  width: 100px;
-  text-align: center;
-}
-.activity-summary {
+.inventory-summary {
   background-color: #F26101;
   padding: 10px 20px;
   width: 100%;
@@ -141,29 +109,19 @@
   border-radius: 15px;
   display: flex;
 }
-.activity-summary i {
+.inventory-summary i {
   font-size: 48px;
   margin-right: 20px;
   color: white;
 }
-.activity-summary .summary-detail {
+.inventory-summary .summary-detail {
   color: white;
   font-family: 'Muli', sans-serif;
 }
-.activity-summary .summary-detail h6,
-.activity-summary .summary-detail h4 {
+.inventory-summary .summary-detail h6,
+.inventory-summary .summary-detail h4 {
   margin: 0;
 }
-.activity-summary .summary-detail h4 {
+.inventory-summary .summary-detail h4 {
   font-weight: 800;
-}
-.summary-limited {
-  display: flex;
-  justify-content: center;
-  bottom: 15px !important;
-}
-@media (min-width: 769px) {
-  .summary-limited {
-    max-width: 512px !important;
-  }
 }

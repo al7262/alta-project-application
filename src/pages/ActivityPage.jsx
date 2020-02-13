@@ -76,6 +76,7 @@ class ActivityPage extends React.Component {
         await this.getActivityList(this.state.date)
         this.setState({isLoading:false})
     }
+    
     render(){
         let totalTransaction, totalSales, transactions, dataToShow
         if(this.state.data!==undefined){
