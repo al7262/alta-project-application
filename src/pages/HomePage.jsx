@@ -18,15 +18,14 @@ class HomePage extends React.Component {
 
     componentDidMount = async() =>{
         await this.props.checkLoginStatus();
-        await this.props.handleInput('outlet', undefined)
         this.setState({finishChecking:true})
         if(this.props.isOwner){
+            await this.props.handleInput('outlet', undefined)
             await this.props.getOwnerInformation()
             this.setState({finishGetInfo:true})
             await this.props.getOutlet()
             this.setState({isLoading:false})
         } else if(this.props.isLogin){
-            console.log(this.props.claims)
             await this.props.getEmployeeInformation()
             this.setState({finishGetInfo:true})
         }
