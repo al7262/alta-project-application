@@ -9,7 +9,6 @@ import SearchBarAbove from '../components/SearchBarAbove';
 import Loader from '../components/Loader';
 import CustomerList from '../components/CustomerList';
 import Swal from 'sweetalert2';
-import CustomerForm from '../components/CustomerForm';
 
 class CustomerPage extends React.Component {
     state = {
@@ -22,7 +21,6 @@ class CustomerPage extends React.Component {
         phone: '',
         email: '',
         editCustomer: false,
-        modal: false,
     }
 
     componentWillMount = async() =>{
@@ -97,12 +95,15 @@ class CustomerPage extends React.Component {
             customerId: data.id,
             editCustomer: true
         })
-        this.controlModal(true)
     }
 
     saveCustomer = async () =>{
         let method = "post";
         let endPoint = "customer/create"
+        const modal = document.getElementById('customerForm')
+        const modalDialog = document.getElementsByClassName('modal-dialog')
+        const body = document.getElementsByTagName('body')
+        const backdrop = document.getElementsByClassName('modal-backdrop')
         if(this.state.editCustomer){
             method = "put";
             endPoint = "customer/"+this.state.customerId
@@ -129,7 +130,13 @@ class CustomerPage extends React.Component {
         if(this.props.error!==undefined){
             this.props.handleError()
         } else{
-            this.controlModal(false)
+            await modal.setAttribute('class', 'modal fade')
+            await modal.setAttribute('aria-hidden', 'true')
+            await modal.setAttribute('style', 'display:none;')
+            await modalDialog[0].removeEventListener('mousedown', Event.MOUSEUP_DISMISS)
+            await body[0].setAttribute('class', '')
+            await backdrop[0].setAttribute('class', 'modal-backdrop fade')
+            await backdrop[0].remove()
         }
         this.resetState();
         this.getDataCustomer();
@@ -143,10 +150,6 @@ class CustomerPage extends React.Component {
             email: '',
             editCustomer: false,
         })
-    }
-
-    controlModal = (condition) =>{
-        this.setState({modal:condition})
     }
 
     render(){
@@ -185,15 +188,31 @@ class CustomerPage extends React.Component {
                 handleOnChange={this.handleSearch}
                 placeholder='Cari pelanggan'/>
                 {/* Modal */}
-                <CustomerForm
-                    name={this.state.name}
-                    phone={this.state.phone}
-                    email={this.state.email}
-                    saveCustomer={this.saveCustomer}
-                    handleOnChange={this.handleOnChange}
-                    show={this.state.modal}
-                    onHide={()=>this.controlModal(false)}
-                    />
+                <div class="modal fade" id="customerForm" tabindex="-1" 
+                role="dialog" aria-labelledby="customerForm" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content customer-modal">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Form Pelanggan</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <span id="warning"></span>
+                                <form onSubmit={e=>e.preventDefault()}>
+                                    <input type="text" name="name" id="name" value={this.state.name} onChange={this.handleOnChange} placeholder="Masukkan Nama Pelanggan"/>
+                                    <input type="text" name="phone" id="phone" value={this.state.phone} onChange={this.handleOnChange} placeholder="Masukkan Nomor Telepon"/>
+                                    <input type="text" name="email" id="email" value={this.state.email} onChange={this.handleOnChange} placeholder="Masukkan Email"/>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-close" data-dismiss="modal">Tutup</button>
+                                <button type="button" class="btn btn-add" onClick={this.saveCustomer}>Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className="container-fluid bg-customer">
                     <div className="container customer-limited">
                         <div className="container-fluid h-100">
@@ -209,7 +228,8 @@ class CustomerPage extends React.Component {
                             <div className="row gap-100"></div>
                         </div>
                         <div className="container customer-add fixed-bottom">
-                            <Link className="btn btn-add" onClick={()=>this.controlModal(true)}>
+                            <Link className="btn btn-add" data-toggle="modal" 
+                            data-target="#customerForm">
                                 <i className="material-icons">add</i>
                             </Link>
                         </div>
@@ -219,4 +239,4 @@ class CustomerPage extends React.Component {
         )
     }
 }
-export default connect('error, customerList, baseUrl, outlet, isLogin', actions)(withRouter(CustomerPage));
+export default connect('customerList, baseUrl, outlet, isLogin', actions)(withRouter(CustomerPage));
