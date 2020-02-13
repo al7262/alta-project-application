@@ -1,9 +1,8 @@
 import React from 'react';
-import { withRouter, Link, Redirect } from "react-router-dom";
+import { withRouter, Redirect } from "react-router-dom";
 import { connect } from "unistore/react";
 import { actions } from "../stores/MainStore";
 import '../styles/inventory.css';
-import {formatMoney} from 'accounting';
 
 import Header from '../components/Header';
 import SearchBarAbove from '../components/SearchBarAbove';

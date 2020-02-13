@@ -1,6 +1,6 @@
 import React from 'react';
-import '../styles/customer.css'
-import {formatMoney} from 'accounting'
+import {Link} from 'react-router-dom';
+import '../styles/customer.css';
 
 const CustomerList = (props) => {
     return (
@@ -13,7 +13,9 @@ const CustomerList = (props) => {
                     <h5>{props.name===''?"No Name":props.name}</h5>
                 </div>
                 <div className="col-3 price">
-                    <i className="material-icons">edit</i>
+                    <Link data-toggle="modal" data-target="#customerForm" onClick={()=>props.handleEdit(props.index)}>
+                        <i className="material-icons">edit</i>
+                    </Link>
                 </div>
             </div>
             <div className="collapse" id={"customer"+props.id}>
