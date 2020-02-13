@@ -13,7 +13,7 @@ const CustomerList = (props) => {
                     <h5>{props.name===''?"No Name":props.name}</h5>
                 </div>
                 <div className="col-3 price">
-                    <Link data-toggle="modal" onClick={()=>props.handleEdit(props.index)}>
+                    <Link data-toggle="modal" data-target="#customerForm" onClick={()=>props.handleEdit(props.index)}>
                         <i className="material-icons">edit</i>
                     </Link>
                 </div>
