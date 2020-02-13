@@ -39,6 +39,7 @@ class CheckoutPage extends React.Component {
             promoList: undefined,
             payment: undefined,
             customer: undefined,
+            newCustomer: undefined,
             promo: undefined,
             amountPaid: undefined,
             finishGetCustomer: false,
@@ -132,7 +133,7 @@ class CheckoutPage extends React.Component {
         this.props.handleReset()
     }
 
-    checkInputCustomer() {
+    async checkInputCustomer () {
         if(this.state.addCustomer){
             const warning = document.getElementById('warning')
             const phoneReg = new RegExp(/^[0-9]*$/)
@@ -148,7 +149,6 @@ class CheckoutPage extends React.Component {
                 warning.innerHTML = 'Harap masukkan email dengan benar'
                 return false
             }
-            console.log(this.state.customerName)
             const input = {
                 method: "post",
                 url: this.props.baseUrl+"customer/create",
@@ -165,7 +165,9 @@ class CheckoutPage extends React.Component {
                     return status<500
                 }
             }
-            this.props.handleApi(input)
+            await this.props.handleApi(input)
+            console.log(this.props.data)
+            this.setState({newCustomer:this.props.data.id})
             return true
         }
         return true
@@ -201,6 +203,7 @@ class CheckoutPage extends React.Component {
                                     customerName = customer[1]
                                 } else{
                                     customerName=customer[0]
+                                    customerId = this.state.newCustomer
                                 }
                             }
                             const data = {
@@ -358,7 +361,8 @@ class CheckoutPage extends React.Component {
                             <i className="material-icons">arrow_back_ios</i>
                             <span>Kembali</span>
                         </Link>
-                        <Link className={"btn btn-checkout " + ((this.state.amountPaid===undefined||this.state.amountPaid==='')&&this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout} onDoubleClick={null}>
+                        {console.log}
+                        <Link className={"btn btn-checkout " + (this.state.amountPaid===undefined||this.state.amountPaid===''||this.state.payment===undefined?'disabled':'')} onClick={this.handleCheckout}>
                             <span>Selesai</span>
                             <i className="material-icons">arrow_back_ios</i>
                         </Link>
