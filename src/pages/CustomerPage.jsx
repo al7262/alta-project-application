@@ -170,18 +170,15 @@ class CustomerPage extends React.Component {
                     />
             })
         }
-        console.log(dataToShow)
-        // if(this.props.outlet===undefined){
-        //     return <Redirect to="/"></Redirect>
-        // }
-        // if(!this.state.finishChecking){
-        //     return <Loader
-        //         height='100vh'
-        //         scale='3'/>
-        // }
-        // if(!this.props.isLogin){
-        //     return <Redirect to='/login'/>
-        // }
+        
+        if(!this.state.finishChecking){
+            return <Loader
+                height='100vh'
+                scale='3'/>
+        }
+        if(!this.props.isLogin){
+            return <Redirect to='/login'/>
+        }
         return (
             <React.Fragment>
                 <Header

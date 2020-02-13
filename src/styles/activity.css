@@ -49,6 +49,7 @@
   border-bottom: 0.5px solid #b3c2cc;
   background-color: white;
   padding: 5px;
+  color: #002943;
 }
 .activity-box .name {
   display: flex;
@@ -80,6 +81,7 @@
   padding: 20px;
   padding-top: 10px;
   background-color: #c8dfea;
+  color: #003354;
 }
 .activity-detail hr {
   margin: 0;

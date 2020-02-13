@@ -73,10 +73,15 @@
   justify-content: flex-end;
   align-items: center;
   text-align: right;
-  padding-left: 0;
 }
 .customer-box .price a {
+  display: flex;
+  padding: 10px;
+  text-decoration: none;
   color: #da5701;
+}
+.customer-box .price a i {
+  font-size: 24px;
 }
 .customer-box .price a:hover {
   color: #F26101;
