@@ -95,6 +95,9 @@ export const actions = (store) => ({
                     if (response.data.claims.email) {
                         await store.setState({ isOwner: true });
                     }
+                    if (response.data.claims.id_outlet){
+                        await store.setState({outlet: response.data.claims.id_outlet})
+                    }
                     await store.setState({ isLogin: true });
                     console.log(store.getState().claims)
                 } else {
@@ -290,13 +293,12 @@ export const actions = (store) => ({
             method: 'get',
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('token')}`,
-                'Access-Control-Allow-Origin': '*',
             },
-            url: state.baseUrl+'employee/search',
+            url: state.baseUrl+'employee/get',
         };
         await axios(input)
         .then(async (response) => {
-            const name = response.data.fullname.split(" ")
+            const name = response.data.full_name.split(" ")
             await store.setState({ cashierName: name[0] });
         })
         .catch((error) => {
