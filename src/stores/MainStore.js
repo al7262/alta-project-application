@@ -2,6 +2,14 @@ import createStore from 'unistore';
 import axios from 'axios';
 import swal from 'sweetalert2';
 
+// Firebase App (the core Firebase SDK) is always required and
+// must be listed before other Firebase SDKs
+var firebase = require("firebase/app");
+
+// Add the Firebase products that you want to use
+require("firebase/auth");
+require("firebase/storage")
+
 const initialState = {
     search: '',
     data: undefined,
@@ -351,5 +359,84 @@ export const actions = (store) => ({
             })
         }
         localStorage.setItem('cart', JSON.stringify(newCart))
+    },
+
+    sendImage: (state, image, input) => {
+        // Set the configuration for your app
+        // TODO: Replace with your app's config object
+        var firebaseConfig = {
+          apiKey: "AIzaSyDUH0ELlUeLq38fCmxltF6ZgqcOh5SznPg",
+          authDomain: "serbabuku-e46a3.firebaseapp.com",
+          databaseURL: "https://serbabuku-e46a3.firebaseio.com",
+          storageBucket: "gs://serbabuku-e46a3.appspot.com"
+        };
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
+    
+        // Get a reference to the storage service, which is used to create references in your storage bucket
+        var storage = firebase.storage();
+    
+        // Create a storage reference from our storage service
+        var storageRef = storage.ref();
+    
+        // Create a child reference
+        var imagesRef = storageRef.child(`receipt/receipt-${new Date()}.jpg`);
+        // imagesRef now points to 'images'
+        try {
+            imagesRef.put(image).then(function(snapshot) {
+              imagesRef
+                .getDownloadURL()
+                .then(function(url) {
+                  // Insert url into an <img> tag to "download"
+                  console.log('inside the url')
+                  const req = {
+                    method: "post",
+                    url: `${state.baseUrl}product/checkout/send-${input}`,
+                    headers: {
+                      "Content-Type": "application/json",
+                      Authorization: `Bearer ${localStorage.getItem("token")}`
+                    },
+                    data: {
+                      id_cart: state.order,
+                      image: url
+                    }
+                  };
+                  axios(req)
+                    .then(response => {
+                        swal.fire('Berhasil!', `Mengirim ke ${input} berhasil`, 'success')
+                    })
+                    .catch(error => {});
+                })
+                .catch(function(error) {
+                  // A full list of error codes is available at
+                  // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case "storage/object-not-found":
+                        // File doesn't exist
+                            swal.fire('Error', 'storage cannot be found', 'error')
+                            break;
+            
+                        case "storage/unauthorized":
+                        // User doesn't have permission to access the object
+                            swal.fire('Error', 'storage cannot be accessed', 'error')
+                            break;
+            
+                        case "storage/canceled":
+                        // User canceled the upload
+                            swal.fire('Error', 'Upload cancelled', 'error')
+                            break;
+                        case "storage/unknown":
+                        // Unknown error occurred, inspect the server response
+                            swal.fire('Error', 'Unknown Error', 'error')
+                            break;
+                        default:
+                            break;
+                  }
+                });
+            });
+        } catch (error) {
+            console.log(error)
+        }
     },
 });

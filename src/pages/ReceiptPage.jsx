@@ -49,6 +49,17 @@ class ReceiptPage extends React.Component {
         });
     }
 
+    handleSendReceipt = (input) => {
+        swal.showLoading()
+        const receipt = document.getElementById('receipt')
+        htmlToImage
+        .toBlob(receipt)
+        .then(async (dataUrl) => {
+            await this.props.sendImage(dataUrl, input)
+            swal.close()
+        });
+    }
+
     render(){
         let data;
         if(this.props.orderDetails!==undefined){
@@ -78,11 +89,11 @@ class ReceiptPage extends React.Component {
                         <Loader loading="hidden"/>:<ReceiptFormat data = {data}/>}
                     </div>
                     <div className="receipt-button">
-                        <Link className="btn btn-email">
+                        <Link className="btn btn-email" onClick={()=>this.handleSendReceipt('email')}>
                             <i className="material-icons">email</i>
                             <span>Email</span>    
                         </Link>
-                        <Link className="btn btn-whatsapp">
+                        <Link className="btn btn-whatsapp" onClick={()=>this.handleSendReceipt('whatsapp')}>
                             <i className="material-icons">message</i>
                             <span>Whatsapp</span>    
                         </Link>
