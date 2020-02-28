@@ -127,10 +127,10 @@ export const actions = (store) => ({
         await store.setState(initialState);
         swal.fire({
             title: 'Good bye!',
-            text: 'You have successfully logged out!',
+            text: 'Kamu sudah berhasil keluar!',
             icon: 'success',
             timer: 2000,
-            confirmButtonText: 'understood',
+            confirmButtonText: 'oke',
         });
     },
 
@@ -321,7 +321,7 @@ export const actions = (store) => ({
             text: state.error.data.message,
             icon: 'error',
             timer: 1500,
-            confirmButtonText: 'understood',
+            confirmButtonText: 'mengerti',
             confirmButtonColor: '#b36232',
           });
           await store.setState({error: undefined})

@@ -60,7 +60,7 @@ class LoginPage extends React.Component {
                 this.props.history.push('/')
                 swal.fire({
                     title: 'Welcome!',
-                    text: 'You have successfully logged in!',
+                    text: 'Kamu sudah berhasil masuk!',
                     icon: 'success',
                     timer: 3000,
                     confirmButtonText: 'okay'
